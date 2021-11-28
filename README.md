@@ -1,7 +1,8 @@
 # Yahee key features:
 
-Users can do the followings
-Chat 1vs1
+
+
+Chat 1vs1 - Users can:
 1. Exchange texts, media (photos, voice recordings), click and hold send button to send a default emoji of different sizes (similar behavior to what you have in facebook messenger)
 2. Pin, reply, hide, recall, copy, forward or react to messages
 3. Set nicknames, conversation theme or block the other end
