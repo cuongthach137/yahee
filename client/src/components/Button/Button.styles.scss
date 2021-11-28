@@ -1,0 +1,131 @@
+.btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.remove-btn {
+  color: var(--grayed-out);
+  cursor: pointer;
+  position: absolute;
+  right: -0.6rem;
+  top: -0.6rem;
+  z-index: 2200;
+}
+
+.static-btn {
+  background-color: var(--green-weed);
+  border-radius: 2px;
+  border: 1px solid var(--green-weed);
+  color: var(--bs-light);
+}
+.transparent-btn {
+  background-color: white;
+  border: none;
+  color: var(--bs-dark);
+}
+
+.primary-btn {
+  background-color: var(--green-weed);
+  border-radius: 2px;
+  border: 1px solid var(--green-weed);
+  &:hover {
+    background-color: white;
+    color: var(--green-weed-light);
+    border: 1px solid var(--green-weed-light);
+  }
+  color: var(--bs-light);
+}
+
+.secondary-btn {
+  background-color: var(--bs-light);
+  border: 1px solid var(--bs-dark);
+  border-radius: 2px;
+  color: var(--bs-dark);
+  cursor: pointer;
+}
+.warm-btn {
+  background-color: var(--warm-bg);
+  border: 1px solid var(--bs-gray);
+  border-radius: 2px;
+  color: var(--bs-dark);
+  cursor: pointer;
+}
+
+.error-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: var(--bs-danger);
+  border: none;
+  border-radius: 2px;
+  color: var(--bs-light);
+  cursor: pointer;
+}
+
+.tag-btn {
+  background-color: var(--green-weed-light);
+  border: none;
+  color: var(--bs-light);
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 100px;
+  transition-duration: 0.4s;
+  position: relative;
+}
+
+.bouncy {
+  transition: all 200ms;
+  transform: translateY(0px);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.ripple {
+  &::after {
+    content: "";
+    background: #ffffff;
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.8s;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -40px !important;
+    margin-top: -120%;
+    border-radius: 50%;
+  }
+  &:active::after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+
+    transition: 0s;
+  }
+}
+
+.disabled {
+  background-color: var(--grayed-out);
+  cursor: not-allowed;
+  user-select: none !important;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  transform: none;
+  box-shadow: none;
+  &:hover {
+    background-color: var(--grayed-out);
+    cursor: not-allowed;
+    user-select: none !important;
+    border: none;
+    color: #fff;
+    border-radius: 0;
+    user-select: none;
+    transform: none;
+    box-shadow: none;
+  }
+}

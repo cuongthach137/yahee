@@ -1,0 +1,86 @@
+@import "../../styles/abstracts/mixins.scss";
+.showIcon {
+  margin: 1.6rem 0;
+  text-align: center;
+  cursor: pointer;
+}
+.account-search {
+  padding: 0.6rem 1rem;
+
+  &__account {
+    .stack {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // &.hidden {
+      //   display: none;
+      // }
+      .avatar {
+        img {
+          width: 3.5rem;
+          height: 3.5rem;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      .hideIcon {
+        cursor: pointer;
+      }
+    }
+  }
+  &__search {
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.contacts {
+  overflow-y: auto;
+  padding: 0 1rem;
+  height: 85%;
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 2px;
+  }
+  & > div {
+    margin-top: 2rem;
+  }
+  .stack {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    & > div {
+      flex: 1;
+    }
+    &:hover {
+      filter: brightness(0.9);
+    }
+    .user-message {
+      flex: 3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 250px;
+      font-size: 14px;
+
+      & > div + div {
+        margin-top: 6px;
+        color: var(--gray-text);
+      }
+    }
+    .user-messageTime {
+      font-size: 11px;
+    }
+    .user-avatar {
+      img {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+}

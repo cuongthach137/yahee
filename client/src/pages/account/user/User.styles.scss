@@ -1,0 +1,18 @@
+.account {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  .container {
+    width: 1600px;
+  }
+  .container > * + * {
+    height: 100%;
+  }
+}
+
+.MuiTab-wrapper.tab-wrapper {
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.MuiTabs-indicator.tabIndicator {
+  background-color: var(--green-weed-light);
+}

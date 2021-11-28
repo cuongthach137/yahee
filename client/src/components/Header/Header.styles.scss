@@ -1,0 +1,237 @@
+@import "./../../styles/main.scss";
+@import "./../../styles/abstracts/mixins.scss";
+
+.container {
+  width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  @include media("<=hd") {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  @include media("<=phone") {
+    width: 100%;
+  }
+}
+
+.header {
+  height: 80px;
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @include media("<=hd") {
+    margin: 0 1rem;
+  }
+}
+
+.header-nav {
+  background-color: #fff;
+  position: fixed;
+  left: 100%;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  transition: left 200ms ease-in-out;
+  &.mobile {
+    left: 0;
+  }
+  .mega-menu {
+    transition: transform 200ms ease-in-out;
+    transform: translateX(0);
+    &.slide-out {
+      transform: translateX(-100%);
+    }
+    .mobile-controls {
+      position: relative;
+      width: 100%;
+      height: 2rem;
+      & > div {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        padding: 0.7rem 1.5rem;
+        & > svg {
+          font-size: 1.7rem;
+        }
+      }
+    }
+    .menu-item {
+      list-style: none;
+      border-bottom: 1px solid var(--bs-gray);
+      height: 3rem;
+      padding: 1rem 0rem;
+      &:nth-child(2) {
+        margin-top: 1rem;
+      }
+      & > span {
+        color: var(--bs-dark);
+        text-transform: uppercase;
+        cursor: pointer;
+        display: block;
+        margin-left: 1.5rem;
+      }
+      .sub-menu {
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%;
+        overflow-y: auto;
+        background-color: white;
+        visibility: hidden;
+        position: absolute;
+        transform: translateX(100%);
+        &.visible {
+          visibility: visible;
+          z-index: 12;
+        }
+        &__controls {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid var(--bs-gray);
+          div {
+            cursor: pointer;
+            padding: 0.7rem 1.5rem;
+            svg {
+              font-size: 1.7rem;
+              font-weight: 100;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media(">=hd") {
+    position: static;
+    z-index: 2;
+    width: auto;
+    background-color: transparent;
+
+    .mega-menu {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      height: 100%;
+      transform: none;
+      .mobile-controls {
+        display: none;
+      }
+      .menu-item {
+        border-bottom: 1px solid white;
+        margin-top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        &:nth-child(2) {
+          margin-top: 0;
+        }
+        & > span {
+          padding: 0.5rem 0;
+        }
+        &:hover > span {
+          border-bottom: 1px solid var(--bs-gray-dark);
+        }
+        &:hover .sub-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+        .sub-menu {
+          border-top: 1px solid var(--bs-dark);
+          border-bottom: 1px solid var(--bs-dark);
+          height: 50vh;
+          top: 80px;
+          left: 0;
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(2rem);
+          transition: 100ms all ease-in-out;
+          &__controls {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// widgets
+.header-widgets {
+  @include flex-center(center, flex-start);
+  height: 100%;
+  align-items: center;
+  & > div {
+    margin: 1rem 0 1rem 1.25rem;
+  }
+  svg {
+    cursor: pointer;
+  }
+  .header-cart {
+    svg {
+      transform: translateY(-2.5px);
+    }
+  }
+  .header-burger {
+    @include media(">=hd") {
+      display: none;
+    }
+  }
+  .header-account {
+    position: relative;
+  }
+  .header-search {
+    &:hover .search-field {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .search-field {
+      background-color: burlywood;
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      right: 15%;
+      height: 5rem;
+      .header-search-form {
+        width: 25rem;
+        display: flex;
+        padding: 8px;
+        input {
+          height: 33px;
+          flex-grow: 1;
+          border: none;
+          border-radius: 2px 0 0 2px;
+        }
+        div {
+          button {
+            padding: 9px;
+            border: none;
+            border-radius: 0px 2px 2px 0;
+            cursor: pointer;
+          }
+        }
+      }
+      .search-results {
+        display: none;
+        color: blue;
+        background-color: brown;
+        height: 20rem;
+        ul {
+          .search-result {
+            list-style: none;
+            width: 100%;
+            background-color: burlywood;
+            height: 4rem;
+            border-bottom: black solid 1px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

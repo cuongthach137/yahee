@@ -1,0 +1,77 @@
+.avatarUpload {
+  width: 30rem;
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  .dropzone {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px dotted var(--grayed-out);
+    padding: 7px;
+    position: absolute;
+    overflow: hidden;
+    top: 20%;
+    &:hover .backdrop .icon {
+      opacity: 1;
+    }
+    &:hover .backdrop .layer {
+      opacity: 0.9;
+    }
+    cursor: pointer;
+    .backdrop {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      .layer {
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.692);
+        width: 100%;
+        height: 100%;
+      }
+      .icon {
+        color: #fff;
+        top: 42%;
+        left: 42%;
+        position: absolute;
+        opacity: 0;
+        svg {
+          z-index: 23;
+        }
+      }
+    }
+    .preview {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    .ownAvatar {
+      width: 100%;
+      height: 100%;
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+  .caption {
+    position: absolute;
+    top: 65%;
+  }
+}

@@ -1,0 +1,51 @@
+.userInformation {
+  margin-top: 4rem;
+  .stack {
+    display: flex;
+    gap: 1rem;
+    & > * {
+      flex: 1;
+    }
+  }
+  & > *:not(.buttonGroup) {
+    margin-bottom: 2rem;
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+  .shippingAddress {
+    .stack {
+      display: flex;
+      gap: 1rem;
+      & > * {
+        flex: 1;
+      }
+      &.checkCountry {
+        position: relative;
+        margin: 1.5rem 0 1rem 0;
+        height: 1rem;
+        & > label {
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    button {
+      text-transform: uppercase;
+    }
+    & > div {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: var(--green-weed);
+    }
+    & > * {
+      text-transform: capitalize;
+    }
+  }
+}

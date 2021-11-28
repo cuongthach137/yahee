@@ -1,0 +1,86 @@
+@import "../../styles/abstracts/mixins.scss";
+
+.contents__title {
+  margin: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  @include media(">=hd") {
+    display: none;
+  }
+}
+.contents__subs {
+  li {
+    list-style: none;
+  }
+  &__subCates li span {
+    cursor: pointer;
+    color: var(--bs-dark);
+  }
+  &__subCates li {
+    margin: 2rem 1.5rem;
+  }
+  &__shop-by {
+    margin-left: 1.5rem;
+    h4 {
+      text-transform: capitalize;
+    }
+    & > li {
+      margin: 1.5rem 0;
+      cursor: pointer;
+      width: 60%;
+      text-transform: capitalize;
+    }
+  }
+  &__featured-image {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    img {
+      width: 50%;
+    }
+    &__des {
+      margin-left: 1rem;
+      p {
+        &:first-child {
+          font-weight: bold;
+        }
+        margin-bottom: 0.7rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+  @include media(">=hd") {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-left: 3rem;
+    &__subCates li span {
+      font-weight: bold;
+    }
+    &__shop {
+      display: flex;
+      flex-wrap: wrap;
+      border-right: 1px solid var(--bs-gray);
+      border-left: 1px solid var(--bs-gray);
+      &-by {
+        flex: 30%;
+        & > li {
+          margin: 1rem 0;
+          cursor: pointer;
+          width: 80%;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &__featured-image {
+      flex-direction: column;
+      img {
+        width: 75%;
+      }
+    }
+  }
+}

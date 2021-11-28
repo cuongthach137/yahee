@@ -1,0 +1,498 @@
+@import "../../styles/abstracts/mixins.scss";
+.product__details {
+  user-select: none;
+  & > * + * {
+    margin-top: 2rem;
+  }
+  .container {
+    .skeleton {
+      height: 70vh;
+    }
+
+    .err-message {
+      height: 50vh;
+      display: grid;
+      place-items: center;
+    }
+  }
+  &__bread-crumbs {
+    padding-top: 1rem;
+    svg {
+      transform: translateY(3px);
+    }
+    nav {
+      ol {
+        display: flex;
+        align-items: center;
+        li {
+          color: var(--bs-dark);
+          a {
+            color: var(--bs-dark);
+            text-decoration: none;
+            :visited {
+              color: var(--bs-dark);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    &__image_gallery {
+      flex: 1;
+      width: 50%;
+      height: 70%;
+      display: flex;
+      gap: 2rem;
+      &-slider {
+        width: 75%;
+        .slick-slider {
+          height: 80%;
+          width: 100%;
+          margin: 0 auto;
+          .slick-list {
+            width: 80%;
+            height: 100%;
+            margin: 0 auto;
+            .slick-track {
+              width: 100%;
+              height: 100%;
+              .slick-slide {
+                div {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  .slick-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
+                }
+              }
+            }
+          }
+          .slick-arrow {
+            width: 3rem;
+            height: 3rem;
+
+            &::before {
+              color: var(--bs-gray-dark);
+              font-size: 2rem;
+            }
+          }
+          .slick-next {
+            right: 0.8rem;
+          }
+          .slick-prev {
+            left: 0.8rem;
+          }
+        }
+      }
+      &-properties {
+        width: 25%;
+        &-type {
+          padding-bottom: 1rem;
+          text-align: center;
+          list-style: none;
+          &-tool-tip {
+            svg {
+              transform: translateY(5px);
+              padding-left: 5px;
+            }
+          }
+          p {
+            margin: 0 auto;
+            &:first-of-type {
+              display: inline-block;
+            }
+            &:first-child {
+              padding-bottom: 1rem;
+            }
+            &:nth-child(3) {
+              padding-bottom: 0.5rem;
+            }
+            &:last-child {
+              border-bottom: 1px solid var(--bs-gray);
+              padding-bottom: 1rem;
+            }
+          }
+        }
+      }
+    }
+    &__info {
+      flex: 1;
+      width: 50%;
+      &-avg-rating {
+        margin-top: 0.5rem;
+      }
+      &-size {
+        h3 {
+          margin-top: 1rem;
+        }
+        ul {
+          margin-top: 0.5rem;
+          display: flex;
+          gap: 0.7rem;
+          li {
+            text-align: center;
+            list-style: none;
+            position: relative;
+            width: 60px;
+            height: 220px;
+            margin-bottom: 1rem;
+            .product__price {
+              display: block;
+              font-size: 13px;
+              padding-top: 0.5rem;
+              &:first-of-type {
+                padding-top: 0;
+                margin-top: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid var(--bs-gray);
+              }
+            }
+            .product__weight {
+              display: inline-block;
+              border-radius: 50%;
+              width: 55px;
+              height: 55px;
+              border: 1px solid var(--bs-gray-dark);
+              cursor: pointer;
+              &-container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
+            input {
+              appearance: none;
+            }
+            .appear-on-click {
+              visibility: hidden;
+              position: absolute;
+              width: 200px;
+              bottom: 1rem;
+              transform: translateX(-4.5rem);
+              div {
+                p {
+                  margin-top: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+      &-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        &-quantity {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          background-color: var(--bs-light);
+          border: 1px solid var(--bs-gray);
+          cursor: pointer;
+        }
+        &-btn {
+          width: 20rem;
+          span {
+            margin: 0 2rem;
+          }
+        }
+      }
+      &-availability {
+        margin-bottom: 1rem;
+      }
+      &-des {
+        margin: 1rem 0;
+        line-height: 1.5rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  @include media("<=tablet") {
+    &__display {
+      gap: 1rem;
+      &__image_gallery {
+        margin-top: 2rem;
+        &-slider {
+          width: 100%;
+          .slick-slider {
+            .slick-arrow {
+              &::before {
+                color: var(--bs-gray-dark);
+                font-size: 1.5rem;
+                display: none;
+              }
+            }
+          }
+        }
+        &-properties {
+          display: none;
+        }
+      }
+      &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &-size {
+          h3 {
+            text-align: center;
+            margin: 1rem 0;
+          }
+          ul {
+            gap: 2rem;
+          }
+        }
+        &-actions {
+          justify-content: center;
+          flex-wrap: wrap;
+          & > span:first-child {
+            display: none;
+          }
+          &-btn {
+            width: 100%;
+          }
+          & > svg {
+            display: none;
+          }
+        }
+        &-availability {
+          width: 100%;
+          text-align: left;
+        }
+      }
+    }
+  }
+  &__in-depth {
+    background-color: var(--warm-bg);
+  }
+}
+.product__details__in-depth__about {
+  height: 100%;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  & > * {
+    width: 70%;
+  }
+  &__tabs {
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--bs-dark);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    &-btn {
+      width: 7rem;
+      height: 3rem;
+      border: none;
+      background-color: var(--warm-bg);
+      cursor: pointer;
+      &.active {
+        background-color: #fff;
+      }
+    }
+  }
+  &__des {
+    line-height: 1.7rem;
+    margin-bottom: 1rem;
+  }
+  &__info-table {
+    &__body {
+      tr {
+        height: 2.7rem;
+
+        &:nth-child(even) {
+          background-color: #fff;
+        }
+        td {
+          padding-left: 0.7rem;
+          &:nth-child(odd) {
+            position: relative;
+            width: 35%;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            span ~ * {
+              position: absolute;
+              right: 1rem;
+              font-size: large;
+            }
+          }
+          &:first-child {
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+  &__reviews {
+    .stack {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+      & > p {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+    }
+    margin-top: 2rem;
+    &__review {
+      margin: 2rem auto;
+      display: flex;
+      position: relative;
+      &__reviewer {
+        display: grid;
+        place-items: center;
+        flex: 1;
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+      &__content {
+        flex: 7;
+        width: 100%;
+        border: 1px solid var(--bs-gray);
+        position: relative;
+        &.userRating {
+          border: 2px solid var(--green-weed);
+        }
+        &__comment-box {
+          padding: 3rem 1rem 1rem 1rem;
+          overflow-y: auto;
+          width: 100%;
+          p {
+            line-height: 1.7rem;
+          }
+        }
+        &__date {
+          position: absolute;
+          left: 15px;
+          top: 15px;
+          font-size: 0.9rem;
+        }
+        &__rating {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+      }
+    }
+    &__add-review {
+      margin-top: 5rem;
+      & > div {
+        margin-top: 3rem;
+      }
+      & > p > span > span {
+        background-color: var(--green-weed-light);
+        cursor: pointer;
+        &:hover {
+          background-color: var(--green-weed);
+          cursor: pointer;
+        }
+      }
+      & > p > span.notMember {
+        background-color: var(--green-weed-light);
+        cursor: pointer;
+      }
+      & > p > span.notMember:hover {
+        background-color: var(--green-weed);
+        cursor: pointer;
+      }
+    }
+  }
+  &__discussions {
+    margin-top: 5rem;
+  }
+  &__disclaimer {
+    width: 70%;
+    margin: 5rem 0;
+    p {
+      font-size: 0.8rem;
+      line-height: 1.3rem;
+    }
+  }
+  &__effects {
+    width: 70%;
+    margin-bottom: 5rem;
+    h4 {
+      margin-bottom: 1rem;
+    }
+    p {
+      line-height: 1.5rem;
+    }
+  }
+  @include media("<=tablet") {
+    width: 100%;
+    &__reviews {
+      margin-top: 0;
+      &__review {
+        flex-direction: column;
+        margin: 1rem auto;
+        &__content {
+          font-size: smaller;
+          &__rating {
+            top: 2.125rem;
+            left: 0.7rem;
+          }
+          &__comment-box {
+            padding: 4rem 1rem 1rem 1rem;
+          }
+        }
+      }
+    }
+    &__tabs {
+      margin: 2rem 0;
+    }
+    &__des {
+      font-size: small;
+    }
+    &__info-table {
+      font-size: small;
+      svg {
+        display: none;
+      }
+      &__body {
+        tr {
+          td {
+            &:nth-child(odd) {
+              width: 8rem;
+            }
+          }
+        }
+      }
+    }
+    &__disclaimer {
+      margin: 3rem 0;
+      p {
+        line-height: 1.5rem;
+      }
+    }
+    &__effects {
+      font-size: smaller;
+    }
+  }
+}

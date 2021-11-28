@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start:dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.27.0",
+    "cloudinary-core": "^2.11.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "firebase-admin": "^9.11.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.6",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
+    "promisify": "0.0.3",
+    "slugify": "^1.6.0",
+    "socket.io": "^4.2.0",
+    "stripe": "^8.176.0",
+    "validator": "^13.6.0"
+  }
+}

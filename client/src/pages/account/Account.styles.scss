@@ -1,0 +1,12 @@
+@import "../../styles/abstracts/mixins.scss";
+
+.wrapper {
+  display: flex;
+}
+.main-content {
+  flex: 10;
+
+  @include media("<=tablet") {
+    flex: 4;
+  }
+}

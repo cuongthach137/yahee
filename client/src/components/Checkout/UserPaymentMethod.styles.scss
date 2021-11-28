@@ -1,0 +1,7 @@
+.userPaymentMethod {
+  & > .stack {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}

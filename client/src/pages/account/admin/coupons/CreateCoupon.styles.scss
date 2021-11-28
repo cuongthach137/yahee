@@ -1,0 +1,47 @@
+.createCoupon {
+  padding: 4rem;
+  & > div {
+    margin-bottom: 3rem;
+  }
+  &__form {
+    .MuiButtonBase-root.MuiIconButton-root.MuiPickersDay-day.MuiPickersDay-daySelected {
+      background-color: var(--green-weed-light);
+    }
+    display: grid;
+    place-items: center;
+    height: 10rem;
+    border-radius: 16px;
+    border-left: 1px solid rgba(236, 236, 236, 0.829);
+    border-bottom: 1px solid rgba(236, 236, 236, 0.829);
+    border-right: 1px solid rgba(236, 236, 236, 0.829);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+      rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  }
+  &__list {
+    border-radius: 16px;
+    border-left: 1px solid rgba(236, 236, 236, 0.829);
+    border-bottom: 1px solid rgba(236, 236, 236, 0.829);
+    border-right: 1px solid rgba(236, 236, 236, 0.829);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+      rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    padding: 2rem;
+    & > table {
+      thead {
+        height: 3rem;
+      }
+      width: 100%;
+      tbody {
+        tr {
+          text-align: center;
+          height: 4rem;
+        }
+      }
+    }
+  }
+  .stack {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+}

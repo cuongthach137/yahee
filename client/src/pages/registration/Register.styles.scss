@@ -1,0 +1,230 @@
+@import "../../styles/abstracts/mixins.scss";
+.register {
+  height: 100vh;
+  @include media("<=tablet") {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    gap: 2rem;
+    .backBtn {
+      position: static !important;
+      margin-left: 3rem;
+    }
+    .container {
+      height: 100%;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      .register-panel {
+        width: 100% !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .social-login {
+          height: 5rem !important;
+          padding: 1rem;
+          .button {
+            gap: 1rem !important;
+            height: auto !important;
+          }
+          button {
+            padding: 10px 5px !important;
+            font-size: 14px;
+          }
+          span {
+            right: auto !important;
+            margin-left: -1rem;
+            left: 50%;
+          }
+        }
+        .title {
+          font-size: 14px;
+          margin-top: 1.3rem;
+        }
+
+        .register-form {
+          height: 100% !important;
+          margin-top: 0rem;
+          form {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem 0;
+            .input-fields {
+              flex-direction: column;
+              padding: 0 0 1.5rem 0 !important;
+
+              & > * {
+                width: 100% !important;
+                & > div {
+                  margin-top: 0;
+                  label {
+                    font-size: 14px;
+                  }
+                  input {
+                    padding: 13px;
+                  }
+                  button {
+                    padding: 10px;
+                    svg {
+                      font-size: 15px;
+                    }
+                  }
+                }
+              }
+            }
+            .actions {
+              margin: 0 !important;
+              font-size: 14px;
+            }
+            .capcha {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  background-color: var(--warm-bg);
+  position: relative;
+  .backBtn {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    & * {
+      color: var(--green-weed);
+    }
+  }
+  .container {
+    display: grid;
+    place-items: center;
+
+    .register-panel {
+      background-color: #fff;
+      width: 550px;
+      border-radius: 3px;
+      border-top: 3px var(--green-weed-light) solid;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+      border-left: 1px rgb(223, 223, 223) solid;
+      border-right: 1px rgb(223, 223, 223) solid;
+      border-bottom: 1px rgb(223, 223, 223) solid;
+      & > * + * {
+        margin-top: 2rem;
+      }
+      .social-login {
+        height: 6rem;
+        background-color: var(--warm-bg);
+        border-bottom: 1px rgb(223, 223, 223) solid;
+        position: relative;
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          gap: 2rem;
+          button {
+            padding: 0.9rem 1rem;
+            width: 12rem;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+              filter: brightness(105%);
+            }
+            &:first-child {
+              background-color: #4061a5;
+            }
+            &:last-child {
+              background-color: #66b4f0;
+            }
+          }
+        }
+        & > span {
+          color: var(--bs-secondary);
+          border-radius: 50%;
+          background-color: #fff;
+          padding: 0.3rem 0.5rem;
+          position: absolute;
+          bottom: -0.8rem;
+          right: 48%;
+        }
+      }
+      .title {
+        color: var(--bs-secondary);
+
+        text-align: center;
+        h1 {
+          margin-bottom: 1rem;
+        }
+        p {
+          margin-bottom: 0.5rem;
+          &:last-of-type {
+            font-size: small;
+            span {
+              color: var(--green-weed);
+            }
+          }
+        }
+      }
+      .register-form {
+        color: var(--bs-secondary);
+        height: 63%;
+        form {
+          .input-fields {
+            margin: 0 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 1px rgb(223, 223, 223) dotted;
+            padding-bottom: 3rem;
+            & > div {
+              width: 12rem;
+            }
+            & > div:nth-child(3),
+            & > div:nth-child(4) {
+              .MuiInputAdornment-root.MuiInputAdornment-positionEnd {
+                transform: translateX(20px);
+              }
+            }
+          }
+          .capcha {
+            height: 10rem;
+          }
+          .actions {
+            text-align: center;
+            margin-bottom: 2rem;
+            .agree {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+          .submit {
+            margin-top: 1rem;
+            button {
+              border-radius: 4px;
+              border: none;
+              background-color: var(--green-weed-light);
+              color: #fff;
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+              &.disabled {
+                background-color: var(--grayed-out);
+                cursor: default;
+                user-select: none;
+                border: none;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

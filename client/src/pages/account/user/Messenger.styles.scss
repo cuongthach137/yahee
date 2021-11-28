@@ -1,0 +1,81 @@
+@import "../../../styles/abstracts/mixins.scss";
+.messenger {
+  width: 100%;
+  overflow: hidden;
+  .chatPage {
+    height: 100vh;
+
+    padding: 0;
+    .chat {
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      &__left {
+        .account-search {
+          height: 10%;
+        }
+      }
+      &__main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        &__header {
+          height: 4.5rem;
+          min-height: 70px;
+        }
+        &__messagesContainer {
+          flex-grow: 1;
+        }
+        &__footer {
+          max-height: 4rem;
+          overflow: hidden;
+          .MuiInputBase-multiline {
+            padding: 0;
+            .MuiInputBase-input {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media("<=tablet") {
+    .chatPage {
+      padding: 0;
+
+      & > * {
+        margin-bottom: 0.5rem;
+      }
+      .chat {
+        height: 100%;
+        .account-search {
+          -webkit-position: -webkit-sticky;
+          -webkit-position: sticky;
+          position: sticky;
+          display: block;
+        }
+
+        &__main {
+          &__footer {
+            max-height: 3rem;
+          }
+          &__messages {
+            &::-webkit-scrollbar {
+              width: 0px;
+              height: 0px;
+            }
+          }
+          &__header {
+            padding-left: 3rem;
+            -webkit-position: -webkit-sticky;
+            -webkit-position: sticky;
+            position: sticky;
+          }
+          &.shrink {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

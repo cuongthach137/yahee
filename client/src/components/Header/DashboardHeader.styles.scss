@@ -1,0 +1,21 @@
+@import "../../styles/abstracts/mixins.scss";
+.header-logged-in {
+  height: 50px;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2rem;
+    @include media("<=tablet") {
+      padding: 0 1rem;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      & > span {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

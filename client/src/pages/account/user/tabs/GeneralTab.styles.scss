@@ -1,0 +1,32 @@
+.generalTab {
+  margin-top: 4rem;
+  user-select: none;
+}
+.MuiPaper-root.MuiCard-root.lmao {
+  border-radius: 16px;
+  border-left: 1px solid rgba(236, 236, 236, 0.829);
+  border-bottom: 1px solid rgba(236, 236, 236, 0.829);
+  border-right: 1px solid rgba(236, 236, 236, 0.829);
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.account-info {
+  width: 100%;
+  padding: 1rem 2rem 4rem 2rem;
+  position: relative;
+  .inputs {
+    .stack {
+      display: flex;
+      gap: 2rem;
+      & > * {
+        width: 100%;
+      }
+    }
+  }
+  button {
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+  }
+}

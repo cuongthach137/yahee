@@ -1,0 +1,77 @@
+@import "./../../styles/main.scss";
+
+.best-seller-area {
+  height: 90vh;
+}
+.best-seller {
+  &-header {
+    text-align: center;
+    line-height: 2rem;
+  }
+  &-tabs {
+    width: 100%;
+    &-categories {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      margin-top: 1.5rem;
+      margin-bottom: 4rem;
+      .tab {
+        width: 10rem;
+        height: 2.5rem;
+        border-radius: 0;
+      }
+    }
+    &-contents {
+      width: 100%;
+      .slick-slider {
+        .slick-next {
+          transform: translateX(-1rem);
+          &::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 400px;
+            background-image: linear-gradient(
+              to right,
+              rgba(255, 0, 0, 0),
+              rgb(255, 255, 255)
+            );
+            right: 0rem;
+            top: -11.85rem;
+          }
+          &::before {
+            display: none;
+          }
+        }
+        .slick-prev {
+          z-index: 1;
+          &::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 400px;
+            background-image: linear-gradient(
+              to left,
+              rgba(255, 0, 0, 0),
+              rgb(255, 255, 255)
+            );
+            left: 1rem;
+            top: -11.85rem;
+          }
+        }
+        .slick-list {
+          .slick-track {
+            overflow: hidden;
+            height: 420px;
+            & > div {
+              width: 257px !important;
+              margin-left: 2rem;
+              transform: translateY(1rem);
+            }
+          }
+        }
+      }
+    }
+  }
+}

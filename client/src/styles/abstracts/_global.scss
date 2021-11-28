@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import "../abstracts/mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: var(--bs-dark);
+  text-decoration: none;
+}
+html {
+  scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
+}
+:root {
+  //stolen from google lmao
+  /* brand foundation */
+  --brand-hue: 200;
+  --brand-saturation: 100%;
+  --brand-lightness: 50%;
+
+  /* light */
+  --brand-light: hsl(
+    var(--brand-hue) var(--brand-saturation) var(--brand-lightness)
+  );
+  --text1-light: hsl(var(--brand-hue) var(--brand-saturation) 10%);
+  --text2-light: hsl(var(--brand-hue) 30% 30%);
+  --surface1-light: hsl(var(--brand-hue) 25% 90%);
+  --surface2-light: hsl(var(--brand-hue) 20% 99%);
+  --surface3-light: hsl(var(--brand-hue) 20% 92%);
+  --surface4-light: hsl(var(--brand-hue) 20% 85%);
+  --surface-shadow-light: var(--brand-hue) 10% 20%;
+  --shadow-strength-light: 0.02;
+
+  /* dark */
+  --brand-dark: hsl(
+    var(--brand-hue) calc(var(--brand-saturation) / 2)
+      calc(var(--brand-lightness) / 1.5)
+  );
+  --text1-dark: hsl(var(--brand-hue) 15% 85%);
+  --text2-dark: hsl(var(--brand-hue) 5% 65%);
+  --surface1-dark: hsl(var(--brand-hue) 10% 10%);
+  --surface2-dark: hsl(var(--brand-hue) 10% 15%);
+  --surface3-dark: hsl(var(--brand-hue) 5% 20%);
+  --surface4-dark: hsl(var(--brand-hue) 5% 25%);
+  --surface-shadow-dark: var(--brand-hue) 50% 3%;
+  --shadow-strength-dark: 0.8;
+
+  /* dim */
+  --brand-dim: hsl(
+    var(--brand-hue) calc(var(--brand-saturation) / 1.25)
+      calc(var(--brand-lightness) / 1.25)
+  );
+  --text1-dim: hsl(var(--brand-hue) 15% 75%);
+  --text2-dim: hsl(var(--brand-hue) 10% 61%);
+  --surface1-dim: hsl(var(--brand-hue) 10% 20%);
+  --surface2-dim: hsl(var(--brand-hue) 10% 25%);
+  --surface3-dim: hsl(var(--brand-hue) 5% 30%);
+  --surface4-dim: hsl(var(--brand-hue) 5% 35%);
+  --surface-shadow-dim: var(--brand-hue) 30% 13%;
+  --shadow-strength-dim: 0.2;
+
+  --green-weed: #559157;
+  --green-weed-light: #9ac587;
+  --green-status: #5fd12e;
+  --gray--icon: #637381;
+  --grayed-out: #c7c7c7;
+  --gray-border: rgb(233, 233, 233);
+  --gray-border-dark: #5b6c7a;
+  --warm-bg: #eaeaea;
+  --gray-text: #637381;
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #828b94;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  --dark-mode: #141413;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--green-weed-light);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-weed);
+}
+::-moz-selection {
+  /* Code for Firefox */
+  color: #fff;
+  background: var(--green-weed-light);
+}
+
+::selection {
+  color: #fff;
+  background: var(--green-weed-light);
+}
+
+.loadingDots {
+  margin-left: 1.5rem;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--gray-text);
+  border-radius: 50%;
+  box-shadow: 20px 0 #00000022, -20px 0 #000000;
+  animation: d5 1s infinite linear alternate;
+}
+
+.MuiButtonBase-root.MuiIconButton-root {
+  color: var(--green-weed);
+  &.MuiPickersDay-daySelected {
+    background-color: var(--green-weed);
+    color: #fff;
+  }
+  &.MuiPickersDay-day:hover {
+    background-color: var(--green-weed);
+    color: #fff;
+  }
+}
+
+.MuiButtonBase-root {
+  &.MuiButton-textPrimary {
+    color: var(--green-weed);
+  }
+}
+
+.MuiButton-label {
+  color: var(--green-weed);
+}
+.MuiRadio-colorSecondary.Mui-checked {
+  color: var(--green-weed) !important;
+}
+.MuiCheckbox-colorPrimary.Mui-checked {
+  color: var(--green-weed) !important;
+}
+
+.MuiInput-input.Mui-focused {
+  color: var(--green-weed) !important;
+}
+.MuiInputBase-root.MuiInput-root {
+  &.MuiInput-underline:after {
+    border-bottom: 2px solid var(--green-weed) !important;
+  }
+}
+
+.MuiFormLabel-root.MuiInputLabel-root {
+  color: var(--green-weed);
+  &.Mui-focused {
+    color: var(--green-weed);
+  }
+}

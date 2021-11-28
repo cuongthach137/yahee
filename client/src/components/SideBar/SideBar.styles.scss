@@ -1,0 +1,48 @@
+@import "../../styles/abstracts/mixins.scss";
+
+.sidebar {
+  flex: 1;
+  background-color: rgb(251, 251, 255);
+  z-index: 99;
+  .sidebarWrapper {
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    color: #555;
+    font-size: small;
+    @include media("<=tablet") {
+      padding: 5px;
+    }
+    .sidebarMenu {
+      margin-bottom: 10px;
+      user-select: none;
+    }
+    .sidebarTitle {
+      text-align: center;
+      font-size: 13px;
+      color: rgb(155, 155, 155);
+      font-weight: bold;
+      @include media(">=phone") {
+        text-align: left;
+      }
+    }
+    .sidebarList {
+      margin-top: 0.6rem;
+      .sidebarListItem {
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 5px;
+        &:active,
+        &:hover {
+          background-color: rgb(236, 237, 255);
+        }
+        &.activeMenu {
+          background-color: rgb(236, 237, 255);
+        }
+      }
+    }
+  }
+}

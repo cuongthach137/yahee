@@ -1,0 +1,52 @@
+.checkout {
+  overflow-x: hidden;
+  .container {
+    display: flex;
+    padding: 0 10rem;
+    height: 100%;
+    & > div {
+      flex: 4;
+      &:last-child {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: "";
+          display: inline-block;
+          left: 0;
+          top: 0;
+          background-color: var(--warm-bg);
+          width: 250%;
+          height: 100%;
+          z-index: -1;
+        }
+        flex: 3;
+        border-left: 1px solid var(--grayed-out);
+      }
+    }
+  }
+  &__steps {
+    padding: 3rem 4rem !important;
+    .logo {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--grayed-out);
+      h1 {
+        text-align: center;
+      }
+    }
+    .steps {
+      margin-top: 0.8rem;
+      text-align: center;
+      span {
+        font-weight: bolder;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        &.activeStep {
+          color: var(--green-weed-light);
+        }
+      }
+    }
+  }
+}

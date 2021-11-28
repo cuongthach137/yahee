@@ -1,0 +1,75 @@
+.chatBox {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  &__instance {
+    visibility: hidden;
+    opacity: 0;
+    width: 20rem;
+    height: 25rem;
+    background-color: lightpink;
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    transition: all 200ms;
+    .instance__header {
+      display: flex;
+      justify-content: space-between;
+      .closeMessage {
+        cursor: pointer;
+      }
+    }
+    .instance__messages {
+      overscroll-behavior: contain;
+      .messageContainer {
+        display: flex;
+        &.ownMessage {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+    &.open {
+      visibility: visible;
+      opacity: 1;
+      transition: all 200ms;
+    }
+    .instance__footer {
+      position: absolute;
+      bottom: 0;
+      .inputBox {
+        display: flex;
+      }
+    }
+    .instance__messages {
+      height: 80%;
+      width: 100%;
+      padding-right: 1rem;
+      overflow-y: auto;
+      & > div {
+        word-wrap: break-word;
+      }
+    }
+  }
+  &__bubble {
+    &.hidden {
+      opacity: 0;
+    }
+    .openMessage {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background-color: var(--green-weed);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

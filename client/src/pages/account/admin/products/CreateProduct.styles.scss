@@ -1,0 +1,200 @@
+.createProduct {
+  position: relative;
+  background-color: var(--warm-bg);
+
+  .createForm {
+    width: 100%;
+    height: 100%;
+    transition: transform 500ms ease;
+    &.hide-form {
+      transform: translateX(-100%);
+    }
+    & > form {
+      margin-right: 3rem;
+      padding-bottom: 3rem;
+      padding-top: 2rem;
+      display: flex;
+      gap: 5rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .productInfo {
+      width: 30rem;
+      textarea,
+      input,
+      select {
+        display: block;
+      }
+      input {
+        width: 100%;
+      }
+      select {
+        width: 20rem;
+        height: 2rem;
+        font-size: 1.5rem;
+      }
+
+      &__size__discount {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        &__tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          & > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 0;
+            margin: 0;
+            width: 5rem;
+            height: 3rem;
+            position: relative;
+            user-select: none;
+            & > span:last-child {
+              font-size: 2rem;
+              position: absolute;
+              opacity: 0;
+              visibility: hidden;
+              width: 100%;
+              text-align: center;
+            }
+            &:hover span:last-child {
+              opacity: 1;
+              visibility: visible;
+            }
+            &:hover span:first-child {
+              opacity: 0;
+              visibility: hidden;
+            }
+          }
+        }
+        &__input {
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          background-color: var(--green-weed-light);
+          display: flex;
+          width: 10rem;
+          height: 3rem;
+          border-radius: 100px;
+          justify-content: space-between;
+          align-items: center;
+          text-align: center;
+          color: #fff;
+          user-select: none;
+          &.disabled {
+            background-color: #c2c3c1;
+            & > * {
+              cursor: default;
+            }
+          }
+          & > input {
+            display: block;
+            width: 5rem;
+            height: 100%;
+            border: none;
+            border-radius: 0 100px 100px 0;
+            color: rgb(109, 109, 109);
+            border: 1px dotted rgb(163, 163, 163);
+            border-left: none;
+            text-align: center;
+            font-size: 1.12rem;
+            background-color: var(--warm-bg);
+          }
+          & > span {
+            width: 5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    .productImages {
+      width: 30rem;
+      margin-left: 3rem;
+      &__images {
+        margin-top: 2rem;
+        .images-preview {
+          background-color: #fff;
+          &__thumbnail {
+            & > .slick-slider {
+              height: 20rem;
+              & > button {
+                &::after,
+                &::before {
+                  display: none;
+                }
+              }
+              .slick-list {
+                height: 100%;
+                .slick-track {
+                  height: 100%;
+
+                  .slick-slide {
+                    height: 100%;
+
+                    & > div {
+                      height: 100%;
+
+                      img {
+                        height: 100%;
+                        object-fit: contain;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .images-dropzone {
+          margin-top: 2rem;
+          & > div {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+    .productDetails {
+      flex: 1;
+      .potency {
+        margin-top: 1rem;
+        &__header {
+          text-align: left;
+          color: rgb(145, 145, 145);
+        }
+      }
+      .thc__cbd__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        & > span {
+          & > span {
+            background-color: var(--green-weed-light);
+          }
+          & > span:nth-child(4),
+          span:nth-child(5) {
+            & > span {
+              & > span {
+                background-color: var(--green-weed-light);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .submitBar {
+    position: fixed;
+    bottom: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 3rem;
+    & > button {
+      margin-left: 1rem;
+    }
+  }
+}

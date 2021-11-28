@@ -1,0 +1,180 @@
+@import "../../styles/abstracts/mixins.scss";
+
+.sign-in {
+  background-color: var(--warm-bg);
+  height: 100vh;
+  position: relative;
+
+  .backBtn {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    & * {
+      color: var(--green-weed);
+    }
+    @include media("<=tablet") {
+      top: 3rem;
+      left: 3rem;
+    }
+  }
+  .container {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+
+    .login-panel {
+      background-color: #fff;
+      width: 550px;
+      height: 40rem;
+      border-radius: 3px;
+      border-top: 3px var(--green-weed-light) solid;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+      border-left: 1px rgb(223, 223, 223) solid;
+      border-right: 1px rgb(223, 223, 223) solid;
+      border-bottom: 1px rgb(223, 223, 223) solid;
+      position: relative;
+
+      & > * + * {
+        margin-top: 2rem;
+      }
+      .social-login {
+        height: 6rem;
+        background-color: var(--warm-bg);
+        border-bottom: 1px rgb(223, 223, 223) solid;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          gap: 2rem;
+          button {
+            padding: 0.9rem 1rem;
+            width: 12rem;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+              filter: brightness(105%);
+            }
+            &:first-child {
+              background-color: #4061a5;
+            }
+            &:last-child {
+              background-color: #66b4f0;
+            }
+          }
+        }
+        & > span {
+          color: var(--bs-secondary);
+          border-radius: 50%;
+          background-color: #fff;
+          padding: 0.3rem 0.5rem;
+          position: absolute;
+          top: -0.8rem;
+          right: 48%;
+        }
+      }
+      .title {
+        margin-top: 7rem;
+        color: var(--bs-secondary);
+        text-align: center;
+        h1 {
+          margin-bottom: 1rem;
+        }
+      }
+      .submit {
+        margin-top: 7rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        button {
+          padding: 0.7rem 2rem;
+        }
+      }
+      .login-form {
+        color: var(--bs-secondary);
+        height: 63%;
+        position: relative;
+        form {
+          .input-fields {
+            margin: 0 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-bottom: 1px rgb(223, 223, 223) dotted;
+            padding: 0 2rem;
+            padding-bottom: 3rem;
+            & > div {
+              flex: 1;
+            }
+          }
+          .capcha {
+            height: 6rem;
+          }
+          .submit {
+            button {
+              border-radius: 4px;
+              border: none;
+              background-color: var(--green-weed-light);
+              color: #fff;
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+              &.disabled {
+                background-color: var(--grayed-out);
+                cursor: default;
+                -ms-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                border: none;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+      @include media("<=tablet") {
+        width: 100%;
+        height: 35rem;
+        .title {
+          font-size: 13px;
+          margin-top: 4rem;
+        }
+        .login-form {
+          height: auto;
+          form {
+            .input-fields {
+              padding: 0 2rem 2rem 2rem;
+              display: block;
+              label {
+                font-size: 14px;
+              }
+            }
+            .submit {
+              margin-top: 2.5rem;
+              font-size: 14px;
+            }
+          }
+        }
+        .social-login {
+          font-size: 11px;
+          .button {
+            padding: 1rem;
+            span {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

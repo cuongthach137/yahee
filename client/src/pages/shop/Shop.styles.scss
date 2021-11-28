@@ -1,0 +1,204 @@
+@import "../../styles/abstracts/mixins.scss";
+.page__header {
+  height: 50vh;
+  background-color: var(--bs-gray);
+  background-image: url("https://wallpapercave.com/wp/wp2490596.jpg");
+  @include media("<=phone") {
+    height: 30vh;
+  }
+}
+.shop__page {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  &__side__widgets {
+    flex: 20%;
+    div {
+      padding-bottom: 2rem;
+    }
+    &-categories {
+      &-header {
+        padding-bottom: 2rem;
+        &::after {
+          content: "";
+          display: block;
+          width: 50px;
+          height: 1px;
+          background-color: black;
+        }
+      }
+      &-contents {
+        button {
+          a {
+            color: #ebebeb;
+            text-decoration: none;
+            &:visited {
+              color: #ebebeb;
+            }
+          }
+        }
+      }
+    }
+    &-filter {
+      &-header {
+        &::after {
+          content: "";
+          display: block;
+          width: 50px;
+          height: 1px;
+          background-color: black;
+        }
+      }
+      &-range-slider {
+        padding: 1rem 0;
+      }
+    }
+  }
+  &__products__display {
+    flex: 80%;
+    height: 100%;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &-view-switch {
+        gap: 1rem;
+        display: flex;
+        align-items: center;
+      }
+      &-sort {
+        h4 {
+          display: inline;
+          margin-right: 1rem;
+        }
+      }
+    }
+    &-contents {
+      &-product-cards {
+        margin: 2rem auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        flex: 1;
+      }
+
+      &-pagination {
+        width: 500px;
+        margin: 0 auto;
+      }
+    }
+  }
+  @include media("<=tablet") {
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 0;
+    &__side__widgets {
+      flex: 20%;
+      div {
+        padding-bottom: 1rem;
+      }
+      &-categories {
+        &-header {
+          padding-bottom: 2rem;
+          &::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 1px;
+            background-color: black;
+          }
+        }
+        &-contents {
+          button {
+            a {
+              color: #ebebeb;
+              text-decoration: none;
+              &:visited {
+                color: #ebebeb;
+              }
+            }
+          }
+        }
+      }
+      &-filter {
+        &-header {
+          &::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 1px;
+            background-color: black;
+          }
+        }
+        &-range-slider {
+          padding: 1rem 0;
+          width: 92%;
+        }
+      }
+    }
+    &__products__display {
+      width: 100%;
+      &-header {
+        display: block;
+        & > div + div {
+          margin-top: 15px;
+        }
+        &-view-switch {
+          gap: 1rem;
+          h4 {
+            display: none;
+          }
+        }
+        &-sort {
+          h4 {
+            display: inline;
+            margin-right: 1rem;
+          }
+        }
+      }
+      &-contents {
+        &-product-cards {
+          justify-content: center;
+          .product__card__container {
+            width: 325px;
+            height: 470px;
+          }
+        }
+
+        &-pagination {
+          width: 100%;
+          nav {
+            & > ul {
+              justify-content: center;
+              & > li button {
+                margin: 0;
+                padding: 0;
+                min-width: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.bread__crumb {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-link {
+    nav {
+      ol {
+        li {
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

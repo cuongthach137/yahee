@@ -1,0 +1,38 @@
+.price-table {
+  position: sticky;
+  top: 0rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  background-color: var(--warm-bg);
+  z-index: 10000;
+  border-bottom: 1px dotted rgb(185, 185, 185);
+  table {
+    width: 100%;
+    border-spacing: 1px;
+    thead {
+      & tr {
+        & > td + td {
+          background-color: var(--warm-bg);
+        }
+      }
+    }
+    tbody {
+      & tr {
+        & > td + td {
+          background-color: var(--warm-bg);
+        }
+        & > td:first-child {
+          width: 15rem;
+        }
+      }
+      & > tr {
+        & > * + * {
+          letter-spacing: 0.09em;
+        }
+      }
+    }
+  }
+}
