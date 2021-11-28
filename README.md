@@ -26,5 +26,5 @@ Users can also customize their experience by
 2. Sending a new message to a person or several people (creating a new conversation if there isn't one in place)
 
 Other features:
-1. Messages go through several stages as shown in their status before others see them: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients),  failed (the message is not saved to database)
+1. Messages go through several stages as shown in their status before they are seen: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients),  failed (the message is not saved to database)
 2. Infinite scrolling: each conversation starts with 30 messages or less initially
