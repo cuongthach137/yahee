@@ -61,8 +61,6 @@ const GroupChatInfo = ({
   }, [isAddingMore, activeConversation.members]);
 
   const handleAddMore = () => {
-    console.log(addMoreInfo);
-    console.log(activeConversation);
     if (!addMoreInfo.membersToAdd.length) {
       return () => setIsAddingMore(false);
     }
@@ -105,10 +103,10 @@ const GroupChatInfo = ({
               sender: user._id,
               senderName: user.name,
               senderPhoto: user.photo,
-              contentType: "announcement-conversationPhoto",
-              text: "userName changed the conversation photo",
               conversationId: activeConversation.id,
               recipient: activeConversation.members.map((m) => m._id),
+              contentType: "announcement-conversationPhoto",
+              text: "userName changed the conversation photo",
             };
             socket.emit("sendMessage", messageToSend);
           })

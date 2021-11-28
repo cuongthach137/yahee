@@ -211,7 +211,11 @@ const ChatMessageList = ({
             )}
           >
             <div>
-              <span className="messageAuthor"></span>
+              <span className="messageAuthor">
+                {activeConversation.pinnedMessage.senderName === user.name
+                  ? "You: "
+                  : activeConversation.pinnedMessage.senderName}
+              </span>
               <div className="messageText">
                 {activeConversation.pinnedMessage.text}
               </div>

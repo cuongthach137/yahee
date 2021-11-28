@@ -19,6 +19,7 @@ const ChatMainHeader = ({
   startCalling,
 }) => {
   const { activeConversation, onlineUsers, setActiveConversation } = useChat();
+
   function setPanel() {
     if (window.innerWidth <= 768) {
       setMobileActivePanel({

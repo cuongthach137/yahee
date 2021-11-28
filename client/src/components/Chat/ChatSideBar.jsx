@@ -65,7 +65,7 @@ const ChatSideBar = forwardRef(
         id: conversation._id,
         otherEnd:
           conversation.conversationType === "OneOne"
-            ? conversation.members.find((m) => m._id === user._id)
+            ? conversation.members.find((m) => m._id !== user._id)
             : {},
         conversationType: conversation.conversationType,
         animation: { class: "" },
