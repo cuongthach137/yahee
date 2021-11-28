@@ -40,6 +40,7 @@ const ChatSideBar = forwardRef(
     const { user } = useAuth();
     const [term, setTerm] = useState("");
     const [contacts, setContacts] = useState([]);
+
     const setPanel = useCallback(() => {
       if (window.innerWidth <= 768) {
         setMobileActivePanel({

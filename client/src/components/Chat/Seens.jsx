@@ -35,6 +35,7 @@ const Seens = ({ message, user }) => {
               <span key={idSeen + index} style={style} className={seenBy} />
             );
           }
+          return "";
         })}
     </div>
   );

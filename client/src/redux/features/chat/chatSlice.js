@@ -69,7 +69,7 @@ const getMoreMessages = createAsyncThunk(
 
 export const ChatFunctions = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { _id: userId } = useSelector((state) => state.user.user || {});
   const {
     activeConversation,
     conversations,
@@ -84,8 +84,8 @@ export const ChatFunctions = () => {
 
   //get all conversations and display on sidebar
   const setConversations = useCallback(
-    () => dispatch(getConversations(user._id)),
-    [dispatch, user._id]
+    () => dispatch(getConversations(userId)),
+    [dispatch, userId]
   );
 
   //get all conversations and display on sidebar
@@ -164,7 +164,7 @@ export const ChatFunctions = () => {
 
   //
   const updateMessages = (data) => {
-    if (data.sender === user._id) {
+    if (data.sender === userId) {
       dispatch(UPDATE_MESSAGES({ ...data, status: false }));
     } else {
       dispatch(UPDATE_MESSAGES({ ...data, status: true }));

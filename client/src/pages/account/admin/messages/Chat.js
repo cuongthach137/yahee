@@ -17,6 +17,7 @@ import OneOneChatInfo from "../../../../components/Chat/OneOneChatInfo";
 import GroupChatInfo from "../../../../components/Chat/GroupChatInfo";
 import { socket } from "App";
 import useWindowResize from "customHooks/useWindowResize";
+import modalTypes from "constants/chatModals";
 
 const Chat = () => {
   const {
@@ -278,18 +279,12 @@ const Chat = () => {
   );
   return (
     <div className="chatPage">
-      <Modal {...modalProps} type="accountSettings">
-        <AccountSettings handleOpen={handleOpen} />
-      </Modal>
-      <Modal {...modalProps} type="newMessage">
-        <NewMessage handleOpen={handleOpen} />
-      </Modal>
-      <Modal {...modalProps} type="forwardMessage">
-        <ForwardMessage handleOpen={handleOpen} />
-      </Modal>
-      <Modal {...modalProps} type="addMoreMember">
-        <AddMoreMember handleOpen={handleOpen} />
-      </Modal>
+      {modalTypes.map((t) => (
+        <Modal {...modalProps} type={t.type}>
+          <t.component handleOpen={handleOpen} />
+        </Modal>
+      ))}
+
       <div className={chat}>
         <ChatSideBar {...commonProps} handleOpen={handleOpen} ref={searchRef} />
 

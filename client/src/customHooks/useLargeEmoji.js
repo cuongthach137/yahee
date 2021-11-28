@@ -77,7 +77,7 @@ const useLargeEmoji = (growLarger) => {
   useEffect(() => {
     growLarger.current.style.transform = `scale(${0})`;
   }, [activeConversation]);
-  return { grow, cancel, send };
+  return { grow, cancel, send, growLarger };
 };
 
 export default useLargeEmoji;

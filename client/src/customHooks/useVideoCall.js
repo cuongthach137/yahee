@@ -293,7 +293,7 @@ const useVideoCall = (myVideoRef, remoteVideoRef) => {
       remoteVideoRef.current.srcObject = myVideoRef.current.srcObject;
       myVideoRef.current.srcObject = swapObj;
     }
-  }, [swap]);
+  }, [swap, myVideoRef, remoteVideoRef]);
 
   useEffect(() => {
     socket.off("offer").on("offer", handleReceiveCall);
