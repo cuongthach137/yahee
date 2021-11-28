@@ -3,7 +3,7 @@
 
 
 Chat 1vs1 - Users can:
-1. Exchange texts, media (photos, voice recordings), click and hold send button to send a default emoji of different sizes (similar behavior to what you have in facebook messenger)
+1. Exchange texts, media (photos, voice recordings), click and hold send button to send a default emoji of different sizes aligned with how long the button is pressed (similar behavior to what you have in facebook messenger)
 2. Pin, reply, hide, recall, copy, forward or react to messages
 3. Set nicknames, conversation theme or block the other end
 4. Buzz the other end's chat window (it shakes) when sending a default emoji or when the sent text contains certain words.
