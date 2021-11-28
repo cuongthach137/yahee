@@ -1,11 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import Accordion from "../Accordion/Accordion";
-import { socket } from "../../App";
-import chatThemes from "../../styles/themes/chatThemes";
-import useAuth from "../../customHooks/useAuthentication";
 import { Avatar, TextField } from "@material-ui/core";
-import AvatarGroup from "../../styles/override/Avatar";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import ConversationPhotos from "./ConversationPhotos";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
@@ -13,29 +8,34 @@ import CameraAltOutlinedIcon from "@material-ui/icons/CameraAltOutlined";
 import DoneIcon from "@material-ui/icons/Done";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { toast } from "react-toastify";
-import { removeImage, uploadImage } from "../../functions/imageFunctions";
 import FileResizer from "react-image-file-resizer";
-import { ProgressContext } from "../../contexts/ProgressContext";
-import joiner from "../../functions/classNameJoiner";
 
-import { getUsersExcept } from "../../functions/userFunctions";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import keyBoard from "../../functions/keyBoard";
+import useAuthentication from "customHooks/useAuthentication";
+import { getUsersExcept } from "functions/userFunctions";
+import { socket } from "App";
+import { removeImage, uploadImage } from "functions/imageFunctions";
+import useChat from "customHooks/useChat";
+import { AvatarGroup } from "@material-ui/lab";
+import Accordion from "../Accordion/Accordion";
 import {
   handleChangeNickName,
   handleChangeTheme,
   handleChatName,
   handleGroupAction,
-} from "../../functions/chatFunctions";
-import useChat from "../../customHooks/useChat";
+} from "functions/chatFunctions";
+import { ProgressContext } from "contexts/ProgressContext";
+import joiner from "functions/classNameJoiner";
+import keyBoard from "functions/keyBoard";
+import chatThemes from "styles/themes/chatThemes";
 
 const GroupChatInfo = ({
   setMobileActivePanel,
   mobileActivePanel,
   activePanel,
 }) => {
-  const { user } = useAuth();
+  const { user } = useAuthentication();
   const { activeConversation } = useChat();
 
   const [edit, setEdit] = useState({ conversationName: false });

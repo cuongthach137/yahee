@@ -6,11 +6,10 @@ import { format } from "timeago.js";
 
 import { Avatar } from "@material-ui/core";
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
-import useChat from "../../customHooks/useChat";
-import useAuth from "../../customHooks/useAuthentication";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
-import joiner from "../../functions/classNameJoiner";
 import { socket } from "../../App";
+import joiner from "functions/classNameJoiner";
+import useChat from "../../customHooks/useChat";
 
 const ChatMainHeader = ({
   mobileActivePanel,
@@ -20,8 +19,20 @@ const ChatMainHeader = ({
   startCalling,
 }) => {
   const { activeConversation, onlineUsers, setActiveConversation } = useChat();
-  const { user } = useAuth();
-
+  function setPanel() {
+    if (window.innerWidth <= 768) {
+      setMobileActivePanel({
+        right: true,
+        left: false,
+        main: false,
+      });
+    } else {
+      setActivePanel({
+        ...activePanel,
+        right: !activePanel.right,
+      });
+    }
+  }
   function isOnline(otherEndId) {
     const onlineUser = onlineUsers.find(
       (userObj) => userObj.userId === otherEndId
@@ -46,13 +57,7 @@ const ChatMainHeader = ({
       {!mobileActivePanel.left && (
         <div
           onClick={() => {
-            if (window.innerWidth <= 768) {
-              setMobileActivePanel({
-                left: true,
-                right: false,
-                main: false,
-              });
-            }
+            setPanel();
             socket.emit("leaveRoom", activeConversation.id);
             setActiveConversation({});
           }}
@@ -112,23 +117,7 @@ const ChatMainHeader = ({
               </>
             )}
 
-            <div
-              className="moreActions"
-              onClick={() => {
-                if (window.innerWidth <= 768) {
-                  setMobileActivePanel({
-                    right: true,
-                    left: false,
-                    main: false,
-                  });
-                } else {
-                  setActivePanel({
-                    ...activePanel,
-                    right: !activePanel.right,
-                  });
-                }
-              }}
-            >
+            <div className="moreActions" onClick={setPanel}>
               <MoreVertRoundedIcon />
             </div>
           </div>
@@ -161,23 +150,7 @@ const ChatMainHeader = ({
             <div className="videoChat">
               <VideocamRoundedIcon />
             </div>
-            <div
-              className="moreActions"
-              onClick={() => {
-                if (window.innerWidth <= 768) {
-                  setMobileActivePanel({
-                    right: true,
-                    left: false,
-                    main: false,
-                  });
-                } else {
-                  setActivePanel({
-                    ...activePanel,
-                    right: !activePanel.right,
-                  });
-                }
-              }}
-            >
+            <div className="moreActions" onClick={setPanel}>
               <MoreVertRoundedIcon />
             </div>
           </div>
