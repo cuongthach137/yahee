@@ -7,7 +7,7 @@ Chat 1vs1 - Users can:
 2. Pin, reply, hide, recall, copy, forward or react to messages
 3. Set nicknames, conversation theme or block the other end
 4. Buzz others (their chat windows will shake) when sending a default emoji or when the sent text contains certain words.
-5. engage in a video call (within local network online, for now)
+5. engage in a video call (within local network only, for now)
 
 Group chat
 1. Most of the above
