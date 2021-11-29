@@ -18,7 +18,7 @@ Group chat
 4.2 Remove another or yourself as admin
 4.3 Remove a member from the group
 4.4 Remove and block a member (Once done you and others shouldn't be able to add him back)
-* In case the conversation doesn't have an admin, you are given the option to claim as the admin
+* In the event the conversation doesn't have an admin, you are given the option to claim as the admin
 5. Leave the conversation
 
 Users can also customize their experience by
