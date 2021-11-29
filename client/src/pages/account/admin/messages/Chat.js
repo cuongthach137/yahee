@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import ChatSideBar from "../../../../components/Chat/ChatSideBar";
 import ChatMain from "../../../../components/Chat/ChatMain";
 import useChat from "../../../../customHooks/useChat";
@@ -7,11 +7,8 @@ import "./Chat.styles.scss";
 import useAuth from "../../../../customHooks/useAuthentication";
 import joiner from "../../../../functions/classNameJoiner";
 import Modal from "../../../../components/Modals/Modal";
-import AccountSettings from "../../../../components/Modals/AccountSettings";
-import NewMessage from "../../../../components/Modals/NewMessage";
-import ForwardMessage from "../../../../components/Modals/ForwardMessage";
+
 import { playSound } from "../../../../utils/notificationSounds";
-import AddMoreMember from "../../../../components/Modals/AddMoreMember";
 import Welcome from "../../../../components/Chat/Welcome";
 import OneOneChatInfo from "../../../../components/Chat/OneOneChatInfo";
 import GroupChatInfo from "../../../../components/Chat/GroupChatInfo";
@@ -48,8 +45,10 @@ const Chat = () => {
   const { user } = useAuth();
   const width = useWindowResize();
 
+  //this looks stupid. consider refatoring to using useReducer
+  // const [state, dispatch] = useReducer(reducer, initialState, init)
   const [mobileActivePanel, setMobileActivePanel] = useState({
-    left: true,
+    left: width < 768,
     right: false,
     main: false,
   });
@@ -58,6 +57,7 @@ const Chat = () => {
     right: true,
     main: true,
   });
+
   const [open, setOpen] = useState({});
 
   const handleOpen = (newValue) => {
@@ -80,6 +80,7 @@ const Chat = () => {
     socket
       .off("getMessages")
       .on("getMessages", ({ messages, conversation, hasMore }) => {
+        if (conversation._id !== activeConversation.id) return;
         setActiveConversation({
           ...conversation,
           messages: messages,

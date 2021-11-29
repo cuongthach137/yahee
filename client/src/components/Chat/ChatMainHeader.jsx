@@ -58,7 +58,13 @@ const ChatMainHeader = ({
       {!mobileActivePanel.left && (
         <div
           onClick={() => {
-            setPanel();
+            if (window.innerWidth <= 768) {
+              setMobileActivePanel({
+                right: false,
+                left: true,
+                main: false,
+              });
+            }
             socket.emit("leaveRoom", activeConversation.id);
             setActiveConversation({});
           }}
