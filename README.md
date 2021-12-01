@@ -1,4 +1,4 @@
-# Yahee key features:
+# Yahee:
 
 Chat 1vs1 - Users can:
 
@@ -19,7 +19,7 @@ Group chat
    4.3 Remove a member from the group
    4.4 Remove and block a member (Once done you and others shouldn't be able to add him back)
 
-In the event the conversation doesn't have an admin, you are given the option to claim as the admin
+- In the event the conversation doesn't have an admin, the user is given the option to claim themself as the admin
 
 5. Leave the conversation
 
