@@ -60,6 +60,32 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
   const { user } = useAuthentication();
   const messageSenderId = message.sender;
   const replyingTo = message.replyingTo;
+  const hasReactions = message.reactions && message.reactions.length > 0;
+  const messageSenderName =
+    activeConversation.memberNickNames &&
+    activeConversation.memberNickNames[messageSenderId]
+      ? activeConversation.memberNickNames[messageSenderId]
+      : message.senderName;
+
+  const isHiddenMessage =
+    message.hideFrom && message.hideFrom?.find((p) => p === user._id);
+  if (isHiddenMessage) return "";
+
+  const messageReactions =
+    message.reactions?.length > 0
+      ? [
+          ...new Set(
+            message.reactions.map((e) =>
+              JSON.stringify({
+                emoji: e.emoji,
+                emojiName: e.emojiName,
+              })
+            )
+          ),
+        ]
+          .map((e) => JSON.parse(e))
+          .map((r, indx) => <span key={indx}>{r.emoji}</span>)
+      : "";
 
   function findRepliedMessageSender() {
     if (replyingTo?.sender === user._id) {
@@ -160,34 +186,6 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
         }`,
       }
     : {};
-
-  const messageSenderName =
-    activeConversation.memberNickNames &&
-    activeConversation.memberNickNames[messageSenderId]
-      ? activeConversation.memberNickNames[messageSenderId]
-      : message.senderName;
-
-  const hasReactions = message.reactions && message.reactions.length > 0;
-
-  const isHiddenMessage =
-    message.hideFrom && message.hideFrom?.find((p) => p === user._id);
-  if (isHiddenMessage) return "";
-
-  const messageReactions =
-    message.reactions?.length > 0
-      ? [
-          ...new Set(
-            message.reactions.map((e) =>
-              JSON.stringify({
-                emoji: e.emoji,
-                emojiName: e.emojiName,
-              })
-            )
-          ),
-        ]
-          .map((e) => JSON.parse(e))
-          .map((r, indx) => <span key={indx}>{r.emoji}</span>)
-      : "";
 
   const handlePinMessage = () => {
     if (message.text.includes("photo") || message.text.includes("audio"))
