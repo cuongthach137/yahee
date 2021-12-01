@@ -58,15 +58,17 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
   const { messageToReply, setForwardMessage, activeConversation } = useChat();
   const { conversationTheme } = activeConversation;
   const { user } = useAuthentication();
+  const messageSenderId = message.sender;
+  const replyingTo = message.replyingTo;
 
   function findRepliedMessageSender() {
-    if (message.replyingTo?.sender === user._id) {
-      if (message.sender === user._id) return "yourself";
+    if (replyingTo?.sender === user._id) {
+      if (messageSenderId === user._id) return "yourself";
       return "you";
     }
-    if (message.sender === message.replyingTo.sender) return "themself";
+    if (messageSenderId === replyingTo.sender) return "themself";
 
-    return message.replyingTo.senderName;
+    return replyingTo.senderName;
   }
 
   function handleReact(e) {
@@ -112,17 +114,17 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
   const messageContainer = joiner(
     "messageContainer",
-    message.sender === user._id && "ownMessage",
-    message.replyingTo && "hasReply",
-    message.replyingTo?.text?.length > 50 && "largeReplyContent",
+    messageSenderId === user._id && "ownMessage",
+    replyingTo && "hasReply",
+    replyingTo?.text?.length > 50 && "largeReplyContent",
     conversationTheme?.mContainer && conversationTheme?.mContainer,
-    message.reactions.length > 0 && "hasReact"
+    hasReactions && "hasReact"
   );
 
   const repliedMessage = joiner(
     "repliedMessage",
-    message.replyingTo?.text?.length > 50 && "largeContent",
-    message.replyingTo?.text?.length < 5 && "smallContent",
+    replyingTo?.text?.length > 50 && "largeContent",
+    replyingTo?.text?.length < 5 && "smallContent",
     activeConversation.conversationType === "Group" && "group"
   );
 
@@ -161,9 +163,11 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
   const messageSenderName =
     activeConversation.memberNickNames &&
-    activeConversation.memberNickNames[message.sender]
-      ? activeConversation.memberNickNames[message.sender]
+    activeConversation.memberNickNames[messageSenderId]
+      ? activeConversation.memberNickNames[messageSenderId]
       : message.senderName;
+
+  const hasReactions = message.reactions && message.reactions.length > 0;
 
   const isHiddenMessage =
     message.hideFrom && message.hideFrom?.find((p) => p === user._id);
@@ -223,9 +227,10 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
       hideFrom: user._id,
     });
   };
+
   return (
     <div key={message._id} className={messageContainer}>
-      {message.replyingTo && !message.isRemoved && (
+      {replyingTo && !message.isRemoved && (
         <div className={repliedMessage}>
           <div className="referencing">
             <ReplyOutlinedIcon />
@@ -238,9 +243,9 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
           </div>
           <p>
             <i>
-              {message.replyingTo.text.length > 60
-                ? `${message.replyingTo.text.substring(0, 60)}...`
-                : message.replyingTo.text}
+              {replyingTo.text.length > 60
+                ? `${replyingTo.text.substring(0, 60)}...`
+                : replyingTo.text}
             </i>
           </p>
         </div>
@@ -335,14 +340,14 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
         <div className="mWrapper">
           {activeConversation.conversationType === "Group" &&
-            message.sender !== user._id && (
+            messageSenderId !== user._id && (
               <img src={message.senderPhoto.url} alt={message.senderName} />
             )}
 
           <div className="message">
-            {!message.replyingTo &&
+            {!replyingTo &&
               activeConversation.conversationType === "Group" &&
-              message.sender !== user._id &&
+              messageSenderId !== user._id &&
               !message.contentType.includes("forward") && (
                 <div className="sender">{messageSenderName}</div>
               )}
@@ -353,7 +358,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
               title={`${format(message.updatedAt, "vi_VN")} / ${capitalize(
                 message.status
               )}`}
-              placement={message.sender === user._id ? "left" : "right"}
+              placement={messageSenderId === user._id ? "left" : "right"}
             >
               <div
                 onClick={() => {
@@ -417,8 +422,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
               className="reactions"
             >
               <div style={conversationTheme ? rs : {}} className="reactedBy">
-                {message.reactions &&
-                  message.reactions.length > 0 &&
+                {hasReactions &&
                   message.reactions.map((r, i) => (
                     <p key={i}>
                       {r.reactedBy.name === user.name
