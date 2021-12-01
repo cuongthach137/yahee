@@ -23,7 +23,7 @@ const initialState = {
     conversationTheme: {},
     totalMessages: 0,
     memberNickNames: {},
-    defaultEmoji: "❤️",
+    defaultEmoji: "",
     noMoreMessages: false,
     hasMore: true,
     pinnedMessage: null,

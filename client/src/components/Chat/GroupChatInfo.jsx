@@ -152,6 +152,12 @@ const GroupChatInfo = ({
     mobileActivePanel.right && "active-mobile",
     activePanel.right && "active"
   );
+
+  const members = activeConversation.members.map((m, index) =>
+    index === activeConversation.members.length - 1
+      ? m.name + "."
+      : m.name + ", "
+  );
   return (
     <div className={chatRight}>
       <div className="groupChatInfo">
@@ -272,14 +278,7 @@ const GroupChatInfo = ({
       <Accordion active={true} cl="groupInfo" title="Group information">
         <div className="stack">Date Created:</div>
 
-        <div className="stack">
-          Members:{" "}
-          {activeConversation.members.map((m, index) =>
-            index === activeConversation.members.length - 1
-              ? m.name + "."
-              : m.name + ", "
-          )}{" "}
-        </div>
+        <div className="stack">Members: {members} </div>
         <div className="addMoreMember">
           {!isAddingMore && (
             <span onClick={() => setIsAddingMore(true)}>+ Add more</span>
@@ -312,103 +311,125 @@ const GroupChatInfo = ({
         </div>
       </Accordion>
       <Accordion title="Members" cl="groupMembers">
-        {activeConversation.members.map((m) => (
-          <div className="stack editNickNames">
-            {edit[m.name] ? (
-              <div className="editField">
-                <input
-                  value={nickName[m.name]}
-                  onChange={(e) =>
-                    setNickName({ ...nickName, [m._id]: e.target.value })
-                  }
-                  type="text"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleChangeNickName(
-                        m,
-                        nickName,
-                        true,
-                        activeConversation,
-                        user,
-                        socket
-                      );
-                      setEdit({
-                        ...edit,
-                        [m.name]: false,
-                      });
-                    }
-                    if (e.key === "Escape") {
-                      setEdit({ ...edit, [m.name]: false });
-                      setNickName({ ...nickName, [m._id]: "" });
-                    }
-                  }}
-                />
-              </div>
-            ) : (
-              <span>
-                {activeConversation.memberNickNames &&
-                activeConversation.memberNickNames[m._id]
-                  ? activeConversation.memberNickNames[m._id]
-                  : m.name}
-                {" - "}
-                {activeConversation.conversationAdmins?.find((a) => a === m._id)
-                  ? "Admin"
-                  : "Peasant"}{" "}
-                {m._id === user._id ? "(You)" : ""}
-              </span>
-            )}
-            <div className="btnGroup">
+        {activeConversation.members.map((m) => {
+          const memberName =
+            activeConversation.memberNickNames &&
+            activeConversation.memberNickNames[m._id]
+              ? activeConversation.memberNickNames[m._id]
+              : m.name;
+
+          const isAdmin = activeConversation.conversationAdmins?.find(
+            (a) => a === m._id
+          );
+
+          const hasNoAdmin =
+            !activeConversation.conversationAdmins?.length &&
+            m._id === user._id;
+          const hasAdmins = activeConversation.conversationAdmins?.length > 0;
+
+          const isUserAdmin = activeConversation.conversationAdmins.find(
+            (a) => a === user._id
+          );
+          const isMemberAdmin = activeConversation.conversationAdmins?.find(
+            (a) => a === m._id
+          );
+
+          const hasNickName =
+            activeConversation.memberNickNames &&
+            activeConversation.memberNickNames[m._id];
+
+          const isMember = m._id !== user._id;
+          return (
+            <div className="stack editNickNames">
               {edit[m.name] ? (
-                <>
-                  <span
-                    onClick={() => {
-                      handleChangeNickName(
-                        m,
-                        nickName,
-                        true,
-                        activeConversation,
-                        user,
-                        socket
-                      );
-                      setEdit({
-                        ...edit,
-                        [m.name]: false,
-                      });
+                <div className="editField">
+                  <input
+                    value={nickName[m.name]}
+                    onChange={(e) =>
+                      setNickName({ ...nickName, [m._id]: e.target.value })
+                    }
+                    type="text"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleChangeNickName(
+                          m,
+                          nickName,
+                          true,
+                          activeConversation,
+                          user,
+                          socket
+                        );
+                        setEdit({
+                          ...edit,
+                          [m.name]: false,
+                        });
+                      }
+                      if (e.key === "Escape") {
+                        setEdit({ ...edit, [m.name]: false });
+                        setNickName({ ...nickName, [m._id]: "" });
+                      }
                     }}
-                  >
-                    <DoneIcon />
-                  </span>
-                  <span
-                    onClick={() => {
-                      setEdit({ ...edit, [m.name]: false });
-                      setNickName({ ...nickName, [m._id]: "" });
-                    }}
-                  >
-                    <ClearRoundedIcon />
-                  </span>
-                </>
+                  />
+                </div>
               ) : (
-                <>
-                  <div className="moreMemActions">
-                    <span>
-                      <MoreHorizIcon />
+                <span>
+                  {memberName}
+                  {" - "}
+                  {isAdmin ? "Admin" : "Peasant"}{" "}
+                  {m._id === user._id ? "(You)" : ""}
+                </span>
+              )}
+              <div className="btnGroup">
+                {edit[m.name] ? (
+                  <>
+                    <span
+                      onClick={() => {
+                        handleChangeNickName(
+                          m,
+                          nickName,
+                          true,
+                          activeConversation,
+                          user,
+                          socket
+                        );
+                        setEdit({
+                          ...edit,
+                          [m.name]: false,
+                        });
+                      }}
+                    >
+                      <DoneIcon />
                     </span>
-                    <ul>
-                      <li>
-                        <span
-                          onClick={() =>
-                            setEdit({
-                              ...edit,
-                              [m.name]: true,
-                            })
-                          }
-                        >
-                          Set nickname
-                        </span>
-                      </li>
-                      <li>
-                        {activeConversation.memberNickNames &&
-                          activeConversation.memberNickNames[m._id] && (
+                    <span
+                      onClick={() => {
+                        setEdit({ ...edit, [m.name]: false });
+                        setNickName({ ...nickName, [m._id]: "" });
+                      }}
+                    >
+                      <ClearRoundedIcon />
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <div className="moreMemActions">
+                      <span>
+                        <MoreHorizIcon />
+                      </span>
+                      <ul>
+                        <li>
+                          <span
+                            onClick={() =>
+                              setEdit({
+                                ...edit,
+                                [m.name]: true,
+                              })
+                            }
+                          >
+                            Set nickname
+                          </span>
+                        </li>
+                        <li>
+                          {hasNickName && (
                             <span
                               onClick={() => {
                                 handleChangeNickName(
@@ -428,15 +449,10 @@ const GroupChatInfo = ({
                               Remove nickname
                             </span>
                           )}
-                      </li>
-                      {activeConversation.conversationAdmins?.length > 0 &&
-                        activeConversation.conversationAdmins.find(
-                          (a) => a === user._id
-                        ) && (
+                        </li>
+                        {hasAdmins && isUserAdmin && (
                           <li>
-                            {activeConversation.conversationAdmins?.find(
-                              (ad) => ad === m._id
-                            ) ? (
+                            {isMemberAdmin ? (
                               <span
                                 onClick={() =>
                                   handleGroupAction(
@@ -469,8 +485,7 @@ const GroupChatInfo = ({
                             )}
                           </li>
                         )}
-                      {!activeConversation.conversationAdmins?.length &&
-                        m._id === user._id && (
+                        {hasNoAdmin && (
                           <li>
                             <span
                               onClick={() =>
@@ -488,10 +503,7 @@ const GroupChatInfo = ({
                             </span>
                           </li>
                         )}
-                      {m._id !== user._id &&
-                        activeConversation.conversationAdmins.find(
-                          (a) => a === user._id
-                        ) && (
+                        {isMember && isUserAdmin && (
                           <>
                             <li>
                               <span
@@ -527,13 +539,14 @@ const GroupChatInfo = ({
                             </li>
                           </>
                         )}
-                    </ul>
-                  </div>
-                </>
-              )}
+                      </ul>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Accordion>
       <Accordion cl="blockeds" title="Blocked from this group">
         <div className="stack">Blocked from this group</div>

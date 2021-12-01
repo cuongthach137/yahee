@@ -19,7 +19,15 @@ const ChatChangeThemeAnnoucement = ({ message, chatThemes, ls }) => {
     }
     return text;
   };
-
+  const themeCircleStyles = {
+    display: "inline-block",
+    width: "1.2rem",
+    height: "1.2rem",
+    borderRadius: "50%",
+    background: chatThemes.find(
+      (t) => t.name === message.text.slice(message.text.indexOf("to") + 3)
+    )?.themeColor,
+  };
   return (
     <>
       <span style={conversationTheme ? ls : {}}>
@@ -28,19 +36,7 @@ const ChatChangeThemeAnnoucement = ({ message, chatThemes, ls }) => {
 
       {!message.text.includes("emoji") &&
         message.contentType.endsWith("changeTheme") && (
-          <span
-            className="themeCircle"
-            style={{
-              display: "inline-block",
-              width: "1.2rem",
-              height: "1.2rem",
-              borderRadius: "50%",
-              background: chatThemes.find(
-                (t) =>
-                  t.name === message.text.slice(message.text.indexOf("to") + 3)
-              )?.themeColor,
-            }}
-          />
+          <span className="themeCircle" style={themeCircleStyles} />
         )}
     </>
   );

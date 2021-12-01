@@ -15,7 +15,6 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ReplyOutlinedIcon from "@material-ui/icons/ReplyOutlined";
 
 import capitalize from "../../../functions/capitalize";
-import classNameJoiner from "../../../functions/classNameJoiner";
 import { socket } from "../../../App";
 import useChat from "../../../customHooks/useChat";
 import joiner from "../../../functions/classNameJoiner";
@@ -111,7 +110,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
     background: conversationTheme?.reactionBackground,
   };
 
-  const messageContainer = classNameJoiner(
+  const messageContainer = joiner(
     "messageContainer",
     message.sender === user._id && "ownMessage",
     message.replyingTo && "hasReply",
@@ -120,14 +119,14 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
     message.reactions.length > 0 && "hasReact"
   );
 
-  const repliedMessage = classNameJoiner(
+  const repliedMessage = joiner(
     "repliedMessage",
     message.replyingTo?.text?.length > 50 && "largeContent",
     message.replyingTo?.text?.length < 5 && "smallContent",
     activeConversation.conversationType === "Group" && "group"
   );
 
-  const messageContent = classNameJoiner(
+  const messageContent = joiner(
     "messageContent",
     conversationTheme &&
       message.text !== activeConversation.defaultEmoji &&
@@ -136,9 +135,94 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
     message.isRemoved && "removed"
   );
 
-  if (message.hideFrom && message.hideFrom?.find((p) => p === user._id))
-    return "";
+  const reactEmojiClx = joiner(
+    "reactEmoji",
+    message.text.length > 20 && "largeContent",
+    message.text.length < 8 && "smallContent"
+  );
+  const messageContentStyles = conversationTheme
+    ? {
+        ...ms,
+        background:
+          message.text === activeConversation.defaultEmoji ||
+          message.text.codePointAt(0).toString(16).startsWith("1f") ||
+          message.text.codePointAt(0).toString(16).startsWith("27") ||
+          !message.contentType.endsWith("plainText")
+            ? "transparent"
+            : ms.background,
+        padding: `${
+          message.cssProperty &&
+          message.text === activeConversation.defaultEmoji
+            ? "1rem 1.5rem"
+            : "0rem"
+        }`,
+      }
+    : {};
 
+  const messageSenderName =
+    activeConversation.memberNickNames &&
+    activeConversation.memberNickNames[message.sender]
+      ? activeConversation.memberNickNames[message.sender]
+      : message.senderName;
+
+  const isHiddenMessage =
+    message.hideFrom && message.hideFrom?.find((p) => p === user._id);
+  if (isHiddenMessage) return "";
+
+  const messageReactions =
+    message.reactions?.length > 0
+      ? [
+          ...new Set(
+            message.reactions.map((e) =>
+              JSON.stringify({
+                emoji: e.emoji,
+                emojiName: e.emojiName,
+              })
+            )
+          ),
+        ]
+          .map((e) => JSON.parse(e))
+          .map((r, indx) => <span key={indx}>{r.emoji}</span>)
+      : "";
+
+  const handlePinMessage = () => {
+    if (message.text.includes("photo") || message.text.includes("audio"))
+      return;
+    socket.emit("setPinnedMessage", {
+      conversationId: message.conversationId,
+      message,
+    });
+    const messageToSend = {
+      conversationId: message.conversationId,
+      sender: user._id,
+      senderPhoto: user.photo,
+      senderName: user.name,
+      contentType: "announcement-pinMessage",
+      text: "userName pinned a message",
+      recipient: activeConversation.members,
+    };
+    socket.emit("sendMessage", messageToSend);
+  };
+
+  const handleRemoveMessage = () => {
+    const result = window.confirm(
+      "After removing the message, you and others in the chat will never be able to see it again. Are you sure?"
+    );
+    if (!result) return;
+
+    socket.emit("removeMessage", message);
+  };
+
+  const handleHideMessage = () => {
+    const result = window.confirm(
+      "This action will hide the message from you only. Others in the conversation will still be able to see and interact with it. Are you sure?"
+    );
+    if (!result) return;
+    socket.emit("hideMessage", {
+      message,
+      hideFrom: user._id,
+    });
+  };
   return (
     <div key={message._id} className={messageContainer}>
       {message.replyingTo && !message.isRemoved && (
@@ -180,33 +264,11 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
                     </li>
                   )}
                   {message.sender === user._id && (
-                    <li
-                      onClick={() => {
-                        const result = window.confirm(
-                          "After removing the message, you and others in the chat will never be able to see it again. Are you sure?"
-                        );
-                        if (!result) return;
-
-                        socket.emit("removeMessage", message);
-                      }}
-                      className="removeMessage"
-                    >
+                    <li onClick={handleRemoveMessage} className="removeMessage">
                       <span>Remove</span>
                     </li>
                   )}
-                  <li
-                    onClick={() => {
-                      const result = window.confirm(
-                        "This action will hide the message from you only. Others in the conversation will still be able to see and interact with it. Are you sure?"
-                      );
-                      if (!result) return;
-                      socket.emit("hideMessage", {
-                        message,
-                        hideFrom: user._id,
-                      });
-                    }}
-                    className="hideMessage"
-                  >
+                  <li onClick={handleHideMessage} className="hideMessage">
                     <span>Hide</span>
                   </li>
                   <li
@@ -224,29 +286,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
                       Forward
                     </span>
                   </li>
-                  <li
-                    onClick={() => {
-                      if (
-                        message.text.includes("photo") ||
-                        message.text.includes("audio")
-                      )
-                        return;
-                      socket.emit("setPinnedMessage", {
-                        conversationId: message.conversationId,
-                        message,
-                      });
-                      const messageToSend = {
-                        conversationId: message.conversationId,
-                        sender: user._id,
-                        senderPhoto: user.photo,
-                        senderName: user.name,
-                        contentType: "announcement-pinMessage",
-                        text: "userName pinned a message",
-                        recipient: activeConversation.members,
-                      };
-                      socket.emit("sendMessage", messageToSend);
-                    }}
-                  >
+                  <li onClick={handlePinMessage}>
                     <span
                       onMouseEnter={() =>
                         playSound("emojiSelection", user.userSettings.sounds)
@@ -269,13 +309,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
                 <span>
                   <EmojiEmotionsOutlinedIcon />
                 </span>
-                <ul
-                  className={joiner(
-                    "reactEmoji",
-                    message.text.length > 20 ? "largeContent" : "",
-                    message.text.length < 8 ? "smallContent" : ""
-                  )}
-                >
+                <ul className={reactEmojiClx}>
                   {emojis.map((e) => (
                     <li
                       className={joiner(
@@ -307,15 +341,10 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
           <div className="message">
             {!message.replyingTo &&
-              activeConversation.conversationType !== "OneOne" &&
+              activeConversation.conversationType === "Group" &&
               message.sender !== user._id &&
               !message.contentType.includes("forward") && (
-                <div className="sender">
-                  {activeConversation.memberNickNames &&
-                  activeConversation.memberNickNames[message.sender]
-                    ? activeConversation.memberNickNames[message.sender]
-                    : message.senderName}
-                </div>
+                <div className="sender">{messageSenderName}</div>
               )}
             {message.contentType.includes("forward") && (
               <div className="contentTypeIndicator">forwarded</div>
@@ -336,32 +365,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
                     playSound("bruh", user.userSettings.sounds);
                   }
                 }}
-                style={
-                  conversationTheme
-                    ? {
-                        ...ms,
-                        background:
-                          message.text === activeConversation.defaultEmoji ||
-                          message.text
-                            .codePointAt(0)
-                            .toString(16)
-                            .startsWith("1f") ||
-                          message.text
-                            .codePointAt(0)
-                            .toString(16)
-                            .startsWith("27") ||
-                          !message.contentType.endsWith("plainText")
-                            ? "transparent"
-                            : ms.background,
-                        padding: `${
-                          message.cssProperty &&
-                          message.text === activeConversation.defaultEmoji
-                            ? "1rem 1.5rem"
-                            : "0rem"
-                        }`,
-                      }
-                    : {}
-                }
+                style={messageContentStyles}
                 className={messageContent}
               >
                 {message.contentType.endsWith("plainText") && (
@@ -423,22 +427,7 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
                     </p>
                   ))}{" "}
               </div>
-              <span className="reaction">
-                {message.reactions?.length > 0
-                  ? [
-                      ...new Set(
-                        message.reactions.map((e) =>
-                          JSON.stringify({
-                            emoji: e.emoji,
-                            emojiName: e.emojiName,
-                          })
-                        )
-                      ),
-                    ]
-                      .map((e) => JSON.parse(e))
-                      .map((r, indx) => <span key={indx}>{r.emoji}</span>)
-                  : ""}
-              </span>{" "}
+              <span className="reaction">{messageReactions}</span>{" "}
               <span>
                 {message.reactions?.length ? message.reactions.length : ""}
               </span>

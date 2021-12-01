@@ -26,11 +26,12 @@ const Seens = ({ message, user }) => {
             activeConversation.conversationType === "Group" && "group"
           );
 
-          if (
+          const isLastSeen =
             user._id !== idSeen &&
             activeConversation.lastSeenMessage &&
-            message._id === activeConversation.lastSeenMessage[idSeen]
-          ) {
+            message._id === activeConversation.lastSeenMessage[idSeen];
+
+          if (isLastSeen) {
             return (
               <span key={idSeen + index} style={style} className={seenBy} />
             );

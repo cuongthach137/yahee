@@ -14,10 +14,13 @@ const ChatMessages = forwardRef(({ ms, ls, handleOpen }, ref) => {
     transform: "translate(-50%,-50%)",
     zIndex: 15,
   };
+
+  const hasMessages =
+    activeConversation.messages && activeConversation.messages.length > 0;
+
   return (
     <>
-      {activeConversation.messages &&
-        activeConversation.messages.length > 0 &&
+      {hasMessages &&
         activeConversation.messages.map((message, index) => {
           if (message.contentType.includes("announcement")) {
             return (

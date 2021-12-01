@@ -53,6 +53,18 @@ const ChatMainHeader = ({
     "user-status",
     isOnline(activeConversation.otherEnd?._id) && "online"
   );
+
+  const otherEndName =
+    activeConversation.memberNickNames &&
+    activeConversation.memberNickNames[activeConversation.otherEnd?._id]
+      ? activeConversation.memberNickNames[activeConversation.otherEnd?._id]
+      : activeConversation.otherEnd?.name;
+
+  const lastOnline = format(
+    onlineUsers.find((u) => u.userId === activeConversation.otherEnd?._id)
+      ?.lastActivity || activeConversation.otherEnd?.lastActivity,
+    "vi_VN"
+  );
   return (
     <div className="chat__main__header">
       {!mobileActivePanel.left && (
@@ -85,25 +97,10 @@ const ChatMainHeader = ({
             </div>
 
             <div className="info">
-              <b className="name">
-                {activeConversation.memberNickNames &&
-                activeConversation.memberNickNames[
-                  activeConversation.otherEnd?._id
-                ]
-                  ? activeConversation.memberNickNames[
-                      activeConversation.otherEnd?._id
-                    ]
-                  : activeConversation.otherEnd?.name}
-              </b>
+              <b className="name">{otherEndName}</b>
               <div className="lastActivity">
                 {!isOnline(activeConversation.otherEnd?._id)
-                  ? format(
-                      onlineUsers.find(
-                        (u) => u.userId === activeConversation.otherEnd?._id
-                      )?.lastActivity ||
-                        activeConversation.otherEnd?.lastActivity,
-                      "vi_VN"
-                    )
+                  ? lastOnline
                   : "online"}
               </div>
             </div>
