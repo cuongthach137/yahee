@@ -28,6 +28,11 @@ const OneOneChatInfo = ({
 }) => {
   const { user } = useAuthentication();
   const { activeConversation } = useChat();
+  const otherEnd = activeConversation.otherEnd;
+
+  const isBlocked =
+    Object.values(activeConversation.block || {}).some(Boolean) &&
+    activeConversation.block[otherEnd?._id];
   const [edit, setEdit] = useState({
     myName: false,
     theirName: false,
@@ -44,7 +49,7 @@ const OneOneChatInfo = ({
     );
     if (result) {
       socket.emit("blockThisPerson", {
-        personToBlock: activeConversation.otherEnd?._id,
+        personToBlock: otherEnd?._id,
         conversationId: activeConversation.id,
         block: block,
         blockedBy: user._id,
@@ -58,11 +63,6 @@ const OneOneChatInfo = ({
     activePanel.right && "active"
   );
 
-  const otherEnd = activeConversation.otherEnd;
-
-  const isBlocked =
-    Object.values(activeConversation.block || {}).some(Boolean) &&
-    activeConversation.block[activeConversation.otherEnd?._id];
   return (
     <div className={chatRight}>
       <div className="otherEndInfo">
@@ -120,14 +120,14 @@ const OneOneChatInfo = ({
       <Accordion title="Information">
         <div className="stack">
           <LocationOnRoundedIcon />
-          <p>{activeConversation.otherEnd?.whereabouts?.address}</p>
+          <p>{otherEnd?.whereabouts?.address}</p>
         </div>
         <div className="stack">
-          <PhoneRoundedIcon /> <p>{activeConversation.otherEnd?.phoneNumber}</p>
+          <PhoneRoundedIcon /> <p>{otherEnd?.phoneNumber}</p>
         </div>
         <div className="stack">
           <EmailRoundedIcon />
-          <p>{activeConversation.otherEnd?.email}</p>
+          <p>{otherEnd?.email}</p>
         </div>
       </Accordion>
       {!Object.values(activeConversation.block || {}).some(Boolean) && (
@@ -147,6 +147,11 @@ const OneOneChatInfo = ({
                   ...edit,
                   [m.name]: false,
                 });
+              };
+
+              const cancelChange = () => {
+                setEdit({ ...edit, [m.name]: false });
+                setNickName({ ...nickName, [m._id]: "" });
               };
 
               const keyDown = (e) => {
@@ -170,6 +175,9 @@ const OneOneChatInfo = ({
                 }
               };
 
+              const handleChange = (e) =>
+                setNickName({ ...nickName, [m._id]: e.target.value });
+
               const isEditing = edit[m.name];
 
               const memberNickName =
@@ -188,9 +196,7 @@ const OneOneChatInfo = ({
                     <>
                       <input
                         value={nickName[m.name]}
-                        onChange={(e) =>
-                          setNickName({ ...nickName, [m._id]: e.target.value })
-                        }
+                        onChange={handleChange}
                         type="text"
                         onKeyDown={keyDown}
                       />{" "}
@@ -198,12 +204,7 @@ const OneOneChatInfo = ({
                         <span onClick={confirmChange}>
                           <DoneIcon />
                         </span>
-                        <span
-                          onClick={() => {
-                            setEdit({ ...edit, [m.name]: false });
-                            setNickName({ ...nickName, [m._id]: "" });
-                          }}
-                        >
+                        <span onClick={cancelChange}>
                           <ClearRoundedIcon />
                         </span>
                       </div>

@@ -69,7 +69,6 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
   const isHiddenMessage =
     message.hideFrom && message.hideFrom?.find((p) => p === user._id);
-  if (isHiddenMessage) return "";
 
   const messageReactions =
     message.reactions?.length > 0
@@ -225,6 +224,8 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
       hideFrom: user._id,
     });
   };
+
+  if (isHiddenMessage) return "";
 
   return (
     <div key={message._id} className={messageContainer}>

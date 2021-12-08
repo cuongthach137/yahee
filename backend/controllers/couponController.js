@@ -1,6 +1,6 @@
 const Cart = require("../models/cartModel");
 const Coupon = require("../models/couponModel");
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/appError");
 
 const catchAsync = require("../utils/catchAsync");
 

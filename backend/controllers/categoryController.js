@@ -1,6 +1,6 @@
 const Category = require("../models/categoryModel");
 const catchSync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
+const AppError = require("../utils/appError");
 const slugify = require("slugify");
 
 exports.createCategory = catchSync(async (req, res, next) => {

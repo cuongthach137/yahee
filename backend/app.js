@@ -5,7 +5,7 @@ const cors = require("cors");
 const fs = require("fs");
 require("dotenv").config();
 const globalErrorHandler = require("./controllers/errorController");
-const AppError = require("./utils/AppError");
+const AppError = require("./utils/appError");
 
 //middlewares
 app.use(morgan("dev"));
