@@ -1,6 +1,10 @@
-# Yahee - My first project to practice what I've learned
+# Yahee - My first project to practice react and mongodb
 
-Take a look @https://yahee.vercel.app/user/messenger
+Have a look @ https://yahee.vercel.app/user/messenger
+Test account:
+test@gmail.com
+anhem!23
+Or create your own account
 
 Chat 1vs1 - Users can:
 
@@ -37,7 +41,9 @@ Other features:
 2. Infinite scrolling: initially the server will send back 30 messages or less for each conversation. User can scroll up to see previous messages
 
 Issues to be fixed:
-Unexpected behavior when users open several tabs simultaneously
-Janky scroll especially when messages contain attachments
-Removed messages may still be present on sidebar
-...
+
+1. Unexpected behavior when users open several tabs or access the account on both a web and mobile browser simultaneously
+2. Janky scroll especially when messages contain attachments
+3. Removed messages may still be present on sidebar
+4. Incorrect announcements in group chat when a user leaves the conversation and is added back later
+   ...
