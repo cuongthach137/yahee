@@ -35,15 +35,17 @@ Users can also
 1. Upload their own profile photo, turn off notification sounds, set chat window theme, search for contacts
 2. Send a new message to a person or several people (a new conversation will be created if there isn't one in place)
 
-Other features:
+Miscellaneous:
 
 1. Messages go through several stages as presented by their status before they are seen: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients), failed (the message is not saved to database)
-2. Infinite scrolling: initially the server will send back 30 messages or less for each conversation. User can scroll up to see previous messages
 
 Issues to be fixed:
 
 1. Unexpected behavior when users open several tabs or access the account on both a web and mobile browser simultaneously
 2. Janky scroll especially when messages contain attachments
-3. Removed messages may still be present on sidebar
-4. Incorrect announcements in group chat when a user leaves the conversation and is added back later
+3. Removed messages may still be visible on sidebar as latest message
+4. Incorrect announcements in group chat when a user leaves the conversation and is later added back
+5. Broken layout on login page
+6. Access the site on IOS devices shows a blank page @@
+
    ...
