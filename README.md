@@ -11,8 +11,8 @@ Chat 1vs1 - Users can:
 1. Exchange text messages, media (photos, voice recordings), click and hold send button to send a default emoji of different sizes aligned with how long the button is pressed (similar behavior to what you have on facebook messenger)
 2. Pin, reply, hide, recall, copy, forward or react to messages
 3. Set nicknames, conversation theme or block the other end
-4. Buzz others (their chat windows will shake) when sending a default emoji or when the sent text contains certain words.
-5. engage in a video call (within a local network only, for now)
+4. Buzz other end (their chat windows will shake) when sending a default emoji or when the sent text contains certain words.
+5. Engage in a video call (within a local network only, for now)
 
 Group chat
 
@@ -41,11 +41,16 @@ Miscellaneous:
 
 Issues to be fixed:
 
-1. Unexpected behavior when users open several tabs or access the account on both a web and mobile browser simultaneously
+1. Unwanted behavior when users open several tabs
 2. Janky scroll especially when messages contain attachments
 3. Removed messages may still be visible on sidebar as latest message
 4. Incorrect announcements in group chat when a user leaves the conversation and is later added back
 5. Broken layout on login page
-6. Access the site on IOS devices shows a blank page @@
+6. Accessing the site on IOS devices shows a blank page @@
+7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (f you steve job)
+8. Incorrect user activity status
 
+Bugs...features to be added:
+1. Conversation tags
+2. Video call that actually works
    ...
