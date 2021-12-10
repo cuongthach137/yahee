@@ -47,7 +47,7 @@ Issues to be fixed:
 4. Incorrect announcements in group chat when a user leaves the conversation and is later added back
 5. Broken layout on login page
 6. Accessing the site on IOS devices shows a blank page @@
-7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (f you steve job)
+7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (please wtf)
 8. Incorrect user activity status
 
 Bugs...features to be added:
