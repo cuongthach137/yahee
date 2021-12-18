@@ -51,7 +51,8 @@ Issues to fix when I have the time.:
 6. Accessing the site on IOS devices shows a blank page @@
 7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (please wtf)
 8. Incorrect user activity status => Redis
-9. Blocked users can still forward messages to you :D  => check block status on backend side
+9. Blocked users can still forward messages to you :D  => Check block status on backend side. I will make use of middlewares this time
+
 ... feel free to notify me when you find more
 
 Bugs...features to add:
