@@ -1,4 +1,6 @@
-# Yahee - My first front to back project
+*I originally built this app for another project which is an online store so the source code appears bundled together. If you want to check out codes for the chat app only, look for folders with "Chat" in its name
+
+# Yahee
 
 Have a look @ https://yahee.vercel.app
 
