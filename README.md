@@ -1,6 +1,6 @@
-*I originally built this app for another project which is an online store so the source code appears bundled together. If you want to check out codes for the chat app only, look for folders with "Chat" in its name or follow this link https://github.com/cuongthach137/yahee/tree/master/client/src/components/Chat
+*I originally built this app for another project which is an online store so the source code appears bundled together. If you want to check out codes for the chat app only, look for folders with "Chat" in its name or follow this link https://github.com/cuongthach137/yahee/tree/master/client/src/components/Chat. The store is incomplete so i deployed the chat app first for now
 
-# Yahee
+# YAHEEEE!
 
 Have a look @ https://yahee.vercel.app
 
