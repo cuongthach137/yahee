@@ -6,7 +6,7 @@ The store is incomplete so i deployed the chat app first for now
 Have a look @ https://yahee.vercel.app
 
 Test account:
-test@gmail.com
+test123@gmail.com
 anhem!23
 Or create your own account
 
