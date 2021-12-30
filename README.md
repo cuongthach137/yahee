@@ -48,7 +48,7 @@ Issues to fix when I have the time.:
 
 1. Unwanted behavior when users open several tabs => Integrate redis to better manage online users
 2. Janky scroll especially when messages contain attachments => Use a library
-3. Removed messages may still be visible on sidebar as latest message => update on backend side
+3. Removed messages might still be visible on sidebar as latest message => update on backend side
 4. Incorrect announcements in group chat when a user leaves the conversation and is later added back => make tweaks to announcement text. Include their name in the text instead of their ID
 5. Broken layout on login page 
 6. Accessing the site on IOS devices shows a blank page @@
