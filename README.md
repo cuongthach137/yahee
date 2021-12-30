@@ -12,7 +12,7 @@ Or create your own account
 
 Chat 1vs1 - Users can:
 
-1. Exchange text messages, media (sending voice recordings is pretty for show only as I don't know where I should store them efficiently yet)
+1. Exchange text messages, media (sending voice recordings is pretty much for show only as I don't know where I should store them efficiently yet)
 2. Pin, reply, hide, recall, copy, forward or react to messages, click and hold send button to send a default emoji of different sizes aligned with how long the button is pressed (similar behavior to what you have on facebook messenger)
 3. Set nicknames, conversation theme
 4. Buzz other end (their chat window will shake) when sending a default emoji or when the sent text contains certain words.
