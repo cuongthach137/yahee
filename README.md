@@ -46,7 +46,7 @@ Users can also
 
 Miscellaneous:
 
-1. Messages go through several stages as presented by their status before they are seen: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients), failed (the message is not saved to database)
+1. Messages go through several stages: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients), failed (the message is not saved to database)
 
 Issues to fix when I have the time.:
 
