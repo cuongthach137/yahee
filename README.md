@@ -8,7 +8,7 @@ Have a look @ https://yahee.vercel.app
 Test account:
 test123@gmail.com
 anhem!23
-Or create your own account
+Or create one your own
 
 Chat 1vs1 - Users can:
 
@@ -18,7 +18,7 @@ Chat 1vs1 - Users can:
 4. Buzz other end (their chat window will shake) when sending a default emoji or when the sent text contains certain words.
 5. Engage in a video call (within a local network only, for now)
 6. Block the other end
-
+![OneOne](https://res.cloudinary.com/jamessimonsd/image/upload/v1640915129/456_j4g1ft.png)
 Group chat
 
 ![Group](https://res.cloudinary.com/jamessimonsd/image/upload/v1640914800/123_lvlekv.png)
