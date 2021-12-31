@@ -48,20 +48,20 @@ Miscellaneous:
 
 1. Messages go through several stages: uploading (sending to the server), sent (saved to database, but recipients have gone offline), delivered (the message is delivered but has yet to be seen by recipients), seen (message is seen by recipients), failed (the message is not saved to database)
 
-Issues to fix when I have the time.:
+Issues to fix when I have the time:
 
-1. Unwanted behavior when users open several tabs => Integrate redis to better manage online users
+1. Unwanted behavior when users open several tabs => This might be because I only use userIds to manage a user's session => Integrate redis to better manage online users? 
 2. Janky scroll especially when messages contain attachments => rebuild an infinite scrolling component or just use a library
 3. Removed messages might still be visible on sidebar as latest message => update on backend side
 4. Incorrect announcements in group chat when a user leaves the conversation and is later added back => make tweaks to announcement text. Include their name in the text instead of their ID
-5. Broken layout on login page 
+5. Broken layout on login page
 6. Accessing the site on IOS devices shows a blank page @@
-7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (please wtf)
-8. Incorrect user activity status => Redis
-9. Blocked users can still forward messages to you :D  => Check block status on backend side. I will make use of middlewares this time
-10. Bad ux when switching conversations
+7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (WTF??)
+8. Incorrect user activity status => Redis might be of use in this case. I will actively learn it and see
+9. Blocked users can still forward messages to you because I only validate on frontend :D  => Check block status on backend side
+10. Bad ux when switching conversations (Blank page while retrieving message list)
 
-... feel free to notify me if you find more
+... feel free to notify me if you find more bugs or have any suggestions regarding how to resolve the above issues
 
 Bugs...features to add:
 1. Conversation tags
