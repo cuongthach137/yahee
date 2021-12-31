@@ -21,6 +21,8 @@ Chat 1vs1 - Users can:
 
 Group chat
 
+![Group](https://res.cloudinary.com/jamessimonsd/image/upload/v1640914800/123_lvlekv.png)
+
 1. Most of the above
 2. Set theme and name for the conversation.
 3. Add more members
