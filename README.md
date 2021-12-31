@@ -19,9 +19,8 @@ Chat 1vs1 - Users can:
 5. Engage in a video call (within a local network only, for now)
 6. Block the other end
 ![OneOne](https://res.cloudinary.com/jamessimonsd/image/upload/v1640915129/456_j4g1ft.png)
-Group chat
 
-![Group](https://res.cloudinary.com/jamessimonsd/image/upload/v1640914800/123_lvlekv.png)
+Group chat
 
 1. Most of the above
 2. Set theme and name for the conversation.
@@ -36,6 +35,9 @@ Group chat
 - In the event the conversation doesn't have an admin, all members are given the option to claim themself as the admin
 
 5. Leave the conversation
+
+![Group](https://res.cloudinary.com/jamessimonsd/image/upload/v1640914800/123_lvlekv.png)
+
 
 Users can also
 
