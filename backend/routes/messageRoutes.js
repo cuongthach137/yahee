@@ -25,6 +25,4 @@ router.post("/messages/getMore", getMoreMessages);
 
 router.post("/message/", createMessage);
 
-router.delete("/messages", deleteAll);
-
 module.exports = router;
