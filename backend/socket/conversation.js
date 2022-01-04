@@ -1070,13 +1070,15 @@ const conversation = (io) => {
           updatedMessagesReplyingToRecalled.push(m);
         }
       }
+      
       io.to(String(message.sender)).emit(
         "updateIndividualMessage",
         message,
         updatedMessagesReplyingToRecalled
       );
+      
       for (let person of message.recipient) {
-        .to(String(person)).emit(
+        socket.to(String(person)).emit(
           "updateIndividualMessage",
           message,
           updatedMessagesReplyingToRecalled
