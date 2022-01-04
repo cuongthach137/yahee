@@ -25,7 +25,7 @@ import { playSound } from "../../utils/notificationSounds";
 import findOtherEnd from "../../utils/findOtherEnd";
 import findAnimation from "../../functions/chatFunctions";
 
-const ChatInput = ({ grow, send, cancel }) => {
+const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
   const count = useRef(0);
   let mediaRecorder = useRef();
   const [message, setMessage] = useState("");
@@ -345,6 +345,8 @@ const ChatInput = ({ grow, send, cancel }) => {
               style={{ cursor: "pointer", userSelect: "none" }}
               onMouseDown={() => {
                 grow();
+                setIsMouseDown(true);
+
               }}
               onMouseUp={() => {
                 send();
