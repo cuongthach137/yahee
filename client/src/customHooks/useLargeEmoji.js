@@ -1,4 +1,4 @@
-import { useEffect, useRef,useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { socket } from "../App";
 import { playSound } from "../utils/notificationSounds";
 import useAuthentication from "./useAuthentication";
@@ -9,7 +9,7 @@ const useLargeEmoji = (growLarger) => {
   const step = useRef(0);
   const { user } = useAuthentication();
   const { activeConversation } = useChat();
-    const [isMouseDown, setIsMouseDown] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
 
   const { id } = activeConversation;
   function grow() {
@@ -62,7 +62,7 @@ const useLargeEmoji = (growLarger) => {
   function cancel(state) {
     if (!state && window.innerWidth >= 769 && isMouseDown) {
       playSound("cancel", user.userSettings.sounds);
-           setIsMouseDown(false);
+      setIsMouseDown(false);
     }
     if (interval.current) clearInterval(interval.current);
     growLarger.current.style.visibility = "hidden";
@@ -80,7 +80,7 @@ const useLargeEmoji = (growLarger) => {
   useEffect(() => {
     growLarger.current.style.transform = `scale(${0})`;
   }, [activeConversation]);
-  return { grow, cancel, send, growLarger,setIsMouseDown };
+  return { grow, cancel, send, growLarger, setIsMouseDown };
 };
 
 export default useLargeEmoji;
