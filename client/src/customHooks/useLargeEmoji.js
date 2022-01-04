@@ -48,7 +48,9 @@ const useLargeEmoji = (growLarger) => {
       cssProperty: {
         scale: step.current <= 16 ? 16 : step.current >= 60 ? 60 : step.current,
       },
-      recipient: activeConversation.members.map((m) => m._id),
+      recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
     };
     socket.emit("sendMessage", messageToSend);
 
