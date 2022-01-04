@@ -287,7 +287,9 @@ const ChatSideBar = forwardRef(
                         {conversation.conversationType === "OneOne" ? (
                           <div className="user-avatar">
                             <img
-                              src={conversation.otherEnd?.photo.url}
+                              src={conversation.members.find(
+                                  (m) => m._id !== user._id
+                                )?.photo?.url}
                               alt=""
                             />
                           </div>

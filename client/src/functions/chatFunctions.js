@@ -72,7 +72,9 @@ export const handleChangeTheme = (
             sender: user._id,
             senderPhoto: user.photo,
             senderName: user.name,
-            recipient: activeConversation.members.map((m) => m._id),
+            recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
           };
 
           socket.emit("sendMessage", {
@@ -111,7 +113,9 @@ export const handleChangeNickName = (
     sender: user._id,
     senderName: user.name,
     senderPhoto: user.photo,
-    recipient: activeConversation.members.map((m) => m._id),
+    recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
     status: "sent",
   };
   socket.emit("sendMessage", messageToSend);
@@ -148,7 +152,7 @@ export const handleChatName = (
     sender: user._id,
     senderName: user.name,
     senderPhoto: user.photo,
-    recipient: activeConversation.members,
+    recipient: activeConversation.members.filter(m=>m._id!==user._id),
   };
   socket.emit("sendMessage", messageToSend);
 
@@ -193,7 +197,7 @@ export const unPin = (activeConversation, user, socket) => {
     senderPhoto: user.photo,
     contentType: "announcement-pinMessage",
     text: "userName unpinned the message",
-    recipient: activeConversation.members,
+    recipient: activeConversation.members.filter(m=>m._id!==user._id),
   };
   socket.emit("sendMessage", messageToSend);
 };

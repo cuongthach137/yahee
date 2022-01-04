@@ -14,8 +14,6 @@ const {
 
 router.post("/conversation", createConversation);
 
-router.delete("/conversations", deleteAllConversations);
-
 router.get("/conversations/:userId", getConversations);
 
 router.get("/conversation/:conversationId", getConversation);

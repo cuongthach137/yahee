@@ -22,7 +22,7 @@ const ChatMain = ({ handleOpen, ...rest }) => {
     myVideoRef,
     remoteVideoRef
   );
-  const { grow, cancel, send } = useLargeEmoji(growLarger);
+  const { grow, cancel, send, setIsMouseDown } = useLargeEmoji(growLarger);
 
   return (
     <div
@@ -98,7 +98,7 @@ const ChatMain = ({ handleOpen, ...rest }) => {
         handleOpen={handleOpen}
         {...rest}
       />
-      <ChatInput grow={grow} send={send} cancel={cancel} />
+      <ChatInput grow={grow} send={send} cancel={cancel} setIsMouseDown={setIsMouseDown} />
     </div>
   );
 };

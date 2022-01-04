@@ -490,9 +490,10 @@ const conversation = (io) => {
       if (cb) {
         cb(200, "message sent and saved to db");
       }
-      if (!messageToSend.text.includes("photo")) {
+         if (!messageToSend.contentType.endsWith("photo")) {
         io.to(messageToSend.sender).emit("sendBack", message);
       }
+      console.log(messageToSend.recipient);
       for (let person of messageToSend.recipient) {
         socket.to(person.toString()).emit("sendBack", message);
       }
@@ -1070,15 +1071,22 @@ const conversation = (io) => {
           updatedMessagesReplyingToRecalled.push(m);
         }
       }
-
+      //send back to the sender
+      io.to(String(message.sender)).emit(
+        "updateIndividualMessage",
+        message,
+        updatedMessagesReplyingToRecalled
+      );
+      //notify other ends
       for (let person of message.recipient) {
-        io.to(String(person)).emit(
+        socket.to(String(person)).emit(
           "updateIndividualMessage",
           message,
           updatedMessagesReplyingToRecalled
         );
       }
     });
+    
     socket.on("hideMessage", async (data) => {
       const message = await Message.findByIdAndUpdate(
         data.message._id,
@@ -1089,9 +1097,9 @@ const conversation = (io) => {
         },
         { new: true }
       );
-      for (let person of message.recipient) {
-        io.to(String(person)).emit("updateIndividualMessage", message);
-      }
+      //send back to user
+      io.to(data.hideFrom).emit("updateIndividualMessage", message);
+
     });
     socket.on("startCall", (userId) =>
       socket.to(userId).emit("calling", "sb is calling you")

@@ -136,6 +136,7 @@
         height: 50%;
         padding: 1rem;
         position: relative;
+        overflow-y:auto;
         .forwardingTo {
           & > * {
             margin-top: 1rem;

@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     url: {
       type: String,
       default:
-        "https://res.cloudinary.com/jamessimonsd/image/upload/v1633250325/vnipggskleq5bkca63pa.jpg",
+        "https://res.cloudinary.com/jamessimonsd/image/upload/v1640856993/istockphoto-1127169576-612x612_lwhoxu.jpg",
     },
   },
   role: {

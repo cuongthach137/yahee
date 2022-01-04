@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { socket } from "../App";
 import { playSound } from "../utils/notificationSounds";
 import useAuthentication from "./useAuthentication";
@@ -9,6 +9,8 @@ const useLargeEmoji = (growLarger) => {
   const step = useRef(0);
   const { user } = useAuthentication();
   const { activeConversation } = useChat();
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
   const { id } = activeConversation;
   function grow() {
     // if (window.innerWidth >= 769) {
@@ -46,7 +48,9 @@ const useLargeEmoji = (growLarger) => {
       cssProperty: {
         scale: step.current <= 16 ? 16 : step.current >= 60 ? 60 : step.current,
       },
-      recipient: activeConversation.members.map((m) => m._id),
+      recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
     };
     socket.emit("sendMessage", messageToSend);
 
@@ -58,8 +62,9 @@ const useLargeEmoji = (growLarger) => {
   }
 
   function cancel(state) {
-    if (!state && window.innerWidth >= 769) {
+    if (!state && window.innerWidth >= 769 && isMouseDown) {
       playSound("cancel", user.userSettings.sounds);
+      setIsMouseDown(false);
     }
     if (interval.current) clearInterval(interval.current);
     growLarger.current.style.visibility = "hidden";
@@ -77,7 +82,7 @@ const useLargeEmoji = (growLarger) => {
   useEffect(() => {
     growLarger.current.style.transform = `scale(${0})`;
   }, [activeConversation]);
-  return { grow, cancel, send, growLarger };
+  return { grow, cancel, send, growLarger, setIsMouseDown };
 };
 
 export default useLargeEmoji;

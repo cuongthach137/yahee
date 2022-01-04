@@ -25,7 +25,7 @@ import { playSound } from "../../utils/notificationSounds";
 import findOtherEnd from "../../utils/findOtherEnd";
 import findAnimation from "../../functions/chatFunctions";
 
-const ChatInput = ({ grow, send, cancel }) => {
+const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
   const count = useRef(0);
   let mediaRecorder = useRef();
   const [message, setMessage] = useState("");
@@ -136,7 +136,9 @@ const ChatInput = ({ grow, send, cancel }) => {
       conversationId: id,
       contentType: "text-plainText",
       animation: findAnimation(message),
-      recipient: activeConversation.members.map((m) => m._id),
+      recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
       reactions: [],
     };
     if (
@@ -345,9 +347,12 @@ const ChatInput = ({ grow, send, cancel }) => {
               style={{ cursor: "pointer", userSelect: "none" }}
               onMouseDown={() => {
                 grow();
+                setIsMouseDown(true);
+
               }}
               onMouseUp={() => {
                 send();
+                setIsMouseDown(false);
               }}
               onMouseLeave={() => {
                 cancel();
