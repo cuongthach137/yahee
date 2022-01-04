@@ -490,9 +490,10 @@ const conversation = (io) => {
       if (cb) {
         cb(200, "message sent and saved to db");
       }
-      if (!messageToSend.text.includes("photo")) {
+         if (!messageToSend.contentType.endsWith("photo")) {
         io.to(messageToSend.sender).emit("sendBack", message);
       }
+      console.log(messageToSend.recipient);
       for (let person of messageToSend.recipient) {
         socket.to(person.toString()).emit("sendBack", message);
       }
