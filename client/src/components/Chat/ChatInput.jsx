@@ -136,7 +136,9 @@ const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
       conversationId: id,
       contentType: "text-plainText",
       animation: findAnimation(message),
-      recipient: activeConversation.members.map((m) => m._id),
+      recipient: activeConversation.members
+        .map((m) => m._id)
+        .filter((id) => id !== user._id),
       reactions: [],
     };
     if (
