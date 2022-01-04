@@ -1076,7 +1076,7 @@ const conversation = (io) => {
         updatedMessagesReplyingToRecalled
       );
       for (let person of message.recipient) {
-        io.to(String(person)).emit(
+        .to(String(person)).emit(
           "updateIndividualMessage",
           message,
           updatedMessagesReplyingToRecalled
@@ -1093,9 +1093,8 @@ const conversation = (io) => {
         },
         { new: true }
       );
-      for (let person of message.recipient) {
-        io.to(String(person)).emit("updateIndividualMessage", message);
-      }
+      io.to(data.hideFrom).emit("updateIndividualMessage", message);
+
     });
     socket.on("startCall", (userId) =>
       socket.to(userId).emit("calling", "sb is calling you")
