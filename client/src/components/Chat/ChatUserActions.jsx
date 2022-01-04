@@ -26,18 +26,18 @@ const ChatUserActions = ({ activeConversation, ls, scrollToMessage }) => {
       }, 100);
     });
   });
+  const personTyping = activeConversation.members
+    .filter((id) => id !== user._id)
+    .find((mem) => mem._id === userAction.userId);
   return (
     <>
-      {userAction.isTyping &&
+      {personTyping &&
+        userAction.isTyping &&
         userAction.conversationId === activeConversation.id && (
           <div style={conversationTheme ? ls : {}} className="otherEnd-actions">
             <div>
               <span>
-                {
-                  activeConversation.members.find(
-                    (mem) => mem._id === userAction.userId
-                  )?.name
-                }
+                {personTyping?.name}
                 {" is typing"}
               </span>
               <div className="dotContainer">
