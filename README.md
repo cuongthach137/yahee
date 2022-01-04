@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 \*I originally built this app for another project which is an online store so the source code appears bundled together. If you want to check out the frontend codes for the chat app only, look for folders with "Chat" in their name or follow this link https://github.com/cuongthach137/yahee/tree/master/client/src/components/Chat.
+=======
+*I originally built this app for another project which is an online store so the source code appears bundled together. If you want to check out the frontend codes for the chat app only, look for folders with "Chat" in their name or follow this link https://github.com/cuongthach137/yahee/tree/master/client/src/components/Chat. 
+>>>>>>> fc1215e2f5626398a38036b5656fd9e6131ade83
 The store is incomplete so i deployed the chat app first for now
 
 # YAHEEEE!
@@ -18,7 +22,11 @@ Chat 1vs1 - Users can:
 4. Buzz other end (their chat window will shake) when sending a default emoji or when the sent text contains certain words.
 5. Engage in a video call (within a local network only, for now)
 6. Block the other end
+<<<<<<< HEAD
    ![OneOne](https://res.cloudinary.com/jamessimonsd/image/upload/v1640915129/456_j4g1ft.png)
+=======
+![OneOne](https://res.cloudinary.com/jamessimonsd/image/upload/v1640915129/456_j4g1ft.png)
+>>>>>>> fc1215e2f5626398a38036b5656fd9e6131ade83
 
 Group chat
 
@@ -38,6 +46,10 @@ Group chat
 
 ![Group](https://res.cloudinary.com/jamessimonsd/image/upload/v1640914800/123_lvlekv.png)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc1215e2f5626398a38036b5656fd9e6131ade83
 Users can also
 
 1. Upload their own profile photo, turn off notification sounds, set chat window theme, search for contacts
@@ -57,6 +69,7 @@ Issues to fix when I have the time:
 6. Accessing the site on IOS devices shows a blank page @@
 7. Weird bug when sending a new message from a Mac in which the very last word of the message duplicates into a new message (Ex: "hey yo" "yo") (WTF??)
 8. Incorrect user activity status => Redis might be of use in this case. I will actively learn it and see
+<<<<<<< HEAD
 9. Blocked users can still forward messages to you because I only validate on frontend :D => Check block status on backend side
 10. Bad ux when switching conversations (Blank page while retrieving message list)
 
@@ -64,6 +77,14 @@ Issues to fix when I have the time:
 
 Bugs...features to add:
 
+=======
+9. Blocked users can still forward messages to you because I only validate on frontend :D  => Check block status on backend side
+10. Bad ux when switching conversations (Blank page while retrieving message list)
+
+... feel free to notify me if you find more bugs or have any suggestions regarding how to resolve the above issues
+
+Bugs...features to add:
+>>>>>>> fc1215e2f5626398a38036b5656fd9e6131ade83
 1. Conversation tags
 2. Video call that actually works
    ...
