@@ -350,6 +350,7 @@ const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
               }}
               onMouseUp={() => {
                 send();
+                setIsMouseDown(false);
               }}
               onMouseLeave={() => {
                 cancel();
