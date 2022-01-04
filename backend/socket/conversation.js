@@ -1070,13 +1070,13 @@ const conversation = (io) => {
           updatedMessagesReplyingToRecalled.push(m);
         }
       }
-      
+      //send back to the sender
       io.to(String(message.sender)).emit(
         "updateIndividualMessage",
         message,
         updatedMessagesReplyingToRecalled
       );
-      
+      //notify other ends
       for (let person of message.recipient) {
         socket.to(String(person)).emit(
           "updateIndividualMessage",
@@ -1085,6 +1085,7 @@ const conversation = (io) => {
         );
       }
     });
+    
     socket.on("hideMessage", async (data) => {
       const message = await Message.findByIdAndUpdate(
         data.message._id,
@@ -1095,6 +1096,7 @@ const conversation = (io) => {
         },
         { new: true }
       );
+      //send back to user
       io.to(data.hideFrom).emit("updateIndividualMessage", message);
 
     });
