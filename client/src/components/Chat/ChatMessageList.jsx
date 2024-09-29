@@ -288,13 +288,15 @@ const ChatMessageList = ({
         />
         <ShakeItHeart />
         {birthDayAnimation && <Birthday />}
-        <div
-          onClick={() => {
-            setBirthDayAnimation(!birthDayAnimation);
-          }}
-        >
-          <GiftBoxAnimation />
-        </div>{" "}
+        {activeConversation.conversationTheme.name === "Birthday" && (
+          <div
+            onClick={() => {
+              setBirthDayAnimation(!birthDayAnimation);
+            }}
+          >
+            <GiftBoxAnimation />
+          </div>
+        )}
         <ChatUserActions
           scrollDown={scrollDown.current}
           scrollToMessage={scrollToMessage.current}

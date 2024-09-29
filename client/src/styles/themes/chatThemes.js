@@ -171,5 +171,20 @@ const chatThemes = [
     class: "neonfreak",
     emoji: "✨",
   },
+  {
+    name: "Birthday",
+    backgroundImage: "none",
+    background: "#1f1e1c",
+    mBackground: "#111",
+    themeColor: "#111",
+    secondaryColor: "#fff",
+    reactedByBackGround: "#111",
+    reactionBackground: "#111",
+    contrastingColor: "#fff",
+    reactedByBorder: "1px solid #fff",
+    emoji: "🤡",
+    class: "clicky",
+    mContainer: "btnLike",
+  },
 ];
 export default chatThemes;
