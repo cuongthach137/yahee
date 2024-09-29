@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { socket } from "../../App";
@@ -12,6 +12,8 @@ import joiner from "../../functions/classNameJoiner";
 import { Tooltip } from "@material-ui/core";
 import trimText from "../../utils/textTrimming";
 import { getMoreMessages, unPin } from "../../functions/chatFunctions";
+import { Birthday } from "./ChatEffects/Birthday";
+import GiftBoxAnimation from "../GiftBox/GiftBox";
 
 const ChatMessageList = ({
   mobileActivePanel,
@@ -199,6 +201,8 @@ const ChatMessageList = ({
       conversationTheme.class
   );
 
+  const [birthDayAnimation, setBirthDayAnimation] = useState(false);
+
   return (
     <div className={messagesContainer}>
       {activeConversation.id && activeConversation.pinnedMessage && (
@@ -275,7 +279,6 @@ const ChatMessageList = ({
         {activeConversation.id && (
           <div ref={observedEl} className="load-more" />
         )}
-
         <ChatMessages
           user={user}
           ls={ls}
@@ -284,6 +287,14 @@ const ChatMessageList = ({
           handleOpen={handleOpen}
         />
         <ShakeItHeart />
+        {birthDayAnimation && <Birthday />}
+        <div
+          onClick={() => {
+            setBirthDayAnimation(!birthDayAnimation);
+          }}
+        >
+          <GiftBoxAnimation />
+        </div>{" "}
         <ChatUserActions
           scrollDown={scrollDown.current}
           scrollToMessage={scrollToMessage.current}

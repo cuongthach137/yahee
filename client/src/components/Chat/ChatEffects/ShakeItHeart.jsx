@@ -27,7 +27,7 @@ import "./ShakeItHeart.styles.scss";
 //   },
 // ];
 
-const ShakeItHeart = () => {
+const ShakeItHeart = ({ active } = { active: "" }) => {
   const { activeConversation } = useChat();
 
   return (
@@ -37,7 +37,7 @@ const ShakeItHeart = () => {
         "hearts",
         activeConversation?.animation?.class
           ? activeConversation?.animation.class
-          : ""
+          : active
       )}
     >
       {[...Array(8).keys()].map((h) => (

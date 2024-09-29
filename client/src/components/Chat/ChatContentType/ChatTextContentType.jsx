@@ -124,11 +124,27 @@ const ChatTextContentType = ({ ms, message, ls, handleOpen }) => {
 
   const fire = useCallback(() => {
     if (conversationTheme?.name === "Dark") {
-      confetti({
-        particleCount: 45,
-        spread: 60,
-        origin: { y: 0.7 },
-      });
+      let particleCount = 10; // Initial particle count
+      const interval = 100; // Time interval between bursts (milliseconds)
+      const maxParticleCount = 300; // Maximum particles to reach
+      const increaseRate = 20; // How much the particles increase per interval
+
+      const confettiInterval = setInterval(() => {
+        // Create a burst of confetti with the current particle count
+        confetti({
+          particleCount,
+          spread: 60,
+          origin: { y: 0.6 },
+        });
+
+        // Increase the particle count gradually
+        particleCount += increaseRate;
+
+        // Stop the interval when the particle count reaches the max
+        if (particleCount > maxParticleCount) {
+          clearInterval(confettiInterval);
+        }
+      }, interval);
     }
   }, [conversationTheme?.name]);
 

@@ -11,7 +11,6 @@ import { socket } from "../../App";
 import useChat from "../../customHooks/useChat";
 import useAuthentication from "../../customHooks/useAuthentication";
 
-import Heart from "./ChatEffects/Heart";
 import Snow from "./ChatEffects/Snow";
 
 import "emoji-mart/css/emoji-mart.css";
@@ -25,7 +24,7 @@ import { playSound } from "../../utils/notificationSounds";
 import findOtherEnd from "../../utils/findOtherEnd";
 import findAnimation from "../../functions/chatFunctions";
 
-const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
+const ChatInput = ({ grow, send, cancel, setIsMouseDown }) => {
   const count = useRef(0);
   let mediaRecorder = useRef();
   const [message, setMessage] = useState("");
@@ -110,8 +109,6 @@ const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
 
   function findTheme() {
     switch (activeConversation?.conversationTheme?.name) {
-      case "Romantic":
-        return <Heart cl="showEffect" />;
       case "SnowyDay":
         return <Snow cl="showEffect" />;
       default:
@@ -348,7 +345,6 @@ const ChatInput = ({ grow, send, cancel ,setIsMouseDown}) => {
               onMouseDown={() => {
                 grow();
                 setIsMouseDown(true);
-
               }}
               onMouseUp={() => {
                 send();
