@@ -46,6 +46,9 @@
     "web-vitals": "^1.1.2",
     "yup": "^0.32.9"
   },
+  "devDependencies": {
+    "@babel/core": "^7.16.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
