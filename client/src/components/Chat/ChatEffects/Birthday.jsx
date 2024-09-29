@@ -12,8 +12,7 @@ const gifs = [
       width: 200,
       height: 200,
       position: "absolute",
-      right: -50,
-      top: 60,
+      transform: "translate(-70%,30%)",
     }}
     src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25xMHQwdDBrZGZ1ZTJlYXcydThhMDFuczd4ZTlxaHd4ZmtmZmEwbyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/feio2yIUMtdqWjRiaF/giphy.gif"
   />,
@@ -22,8 +21,7 @@ const gifs = [
       width: 200,
       height: 200,
       borderRadius: "50%",
-      top: 700,
-      left: -300,
+      transform: "translate(-115%,320%)",
       position: "absolute",
     }}
     src="https://i.makeagif.com/media/4-17-2019/vvCcJh.gif"
@@ -33,8 +31,7 @@ const gifs = [
       width: 200,
       height: 200,
       borderRadius: "50%",
-      top: 550,
-      left: 400,
+      transform: "translate(200%,260%)",
       position: "absolute",
     }}
     src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWhqOWdyMW0zYTVjZnltMWdwc3U0czFvMmYxNTJocW5yYzB2MTRhNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1zKRm7xZjkhaeeZbSd/giphy.webp"
@@ -44,8 +41,7 @@ const gifs = [
       width: 200,
       height: 200,
       borderRadius: "50%",
-      top: 550,
-      right: -1250,
+      transform: "translate(565%,320%)",
       position: "absolute",
     }}
     src="https://media1.tenor.com/m/2cDKig3kIj4AAAAC/kha-banh-mua-quat.gif"
