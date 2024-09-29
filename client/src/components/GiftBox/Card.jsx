@@ -35,8 +35,8 @@ const BirthdayCard = ({ active }) => {
         <br />
         <div>
           Hôm nay là ngày đặc biệt của em. 🌟 Hy vọng tuổi 23 sẽ mang lại cho em
-          em nhiều điều thú vị, những chuyến phiêu lưu mới, và tất cả những giấc
-          mơ em hằng mong ước. Chúc em có được nhiều thành công trong công việc,
+          nhiều điều thú vị, những chuyến phiêu lưu mới, và tất cả những giấc mơ
+          em hằng mong ước. Chúc em có được nhiều thành công trong công việc,
           luôn tự tin vào những quyết định của mình em nhé. Em làm tốt lắmm.
         </div>
         <br />
